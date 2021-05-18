@@ -1,30 +1,16 @@
-import React, {FC} from 'react';
+import React from 'react';
+import {IPerson} from "../containers/App";
 
-interface IName {
-    first: string,
-    last: string
-}
 
-export interface IPerson {
-    id: string,
-    isActive: boolean,
-    age: number,
-    name: IName,
-    company: string,
-    email: string,
-    phone: string,
-    address: string,
-    registered: string
-}
-// @ts-ignore
-const Book = ({phones}/*:{ phones: Array<IPerson> }*/) => {
-    console.log('Render Book', phones)
+const Book = ({phones}: {phones: Array<IPerson>}) => {
     return (
         <main className="main">
             <ul>
-                {phones?.map( (phone: any) => {
-                    <li key={phone.id}></li>
-                })}
+                {phones?.map(({id, name, phone}: IPerson) => (
+                    <li key={id}>
+                        {name.last} {name.first}, phone: {phone}
+                    </li>
+                ))}
             </ul>
         </main>
     )

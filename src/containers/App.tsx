@@ -12,12 +12,12 @@ interface IName {
 export interface IPerson {
     id: string,
     isActive: boolean,
-    age: number,
+    age?: number,
     name: IName,
-    company: string,
-    email: string,
+    company?: string,
+    email?: string,
     phone: string,
-    address: string,
+    address?: string,
     registered: string
 }
 

@@ -5,7 +5,12 @@ const Header: FC = () => {
         <div className="container">
             <header className="header">
                 <p>Logo</p>
-                <button className="header__log-link">Sign in</button>
+                <button
+                    className="header__log-link"
+
+                >
+                    Sign in
+                </button>
             </header>
         </div>
     )

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { login } from '../utils';
 
 const SignIn = (props) => {
@@ -8,6 +8,9 @@ const SignIn = (props) => {
         props.history.push('/dashboard');
     }
 
+    useEffect(() => {
+        console.log(props)
+    }, [])
     return (
         <div>
             <h1>Sign in</h1>

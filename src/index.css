@@ -31,3 +31,7 @@ code {
   border: 2px solid var(--main-purple);
   border-radius: 4px;
 }
+
+.log-in__input {
+  display: block;
+}

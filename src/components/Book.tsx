@@ -2,7 +2,7 @@ import React from 'react';
 import {IPerson} from "../containers/App";
 
 
-const Book = ({phones}: {phones: Array<IPerson>}) => {
+const Book = ({phones}: {phones: Array<IPerson>}): React.ReactElement => {
     return (
         <main className="main">
             <div className="container">

@@ -22,7 +22,7 @@ const Book = ({phones}/*:{ phones: Array<IPerson> }*/) => {
     return (
         <main className="main">
             <ul>
-                {phones.map( (phone: IPerson) => {
+                {phones?.map( (phone: any) => {
                     <li key={phone.id}></li>
                 })}
             </ul>

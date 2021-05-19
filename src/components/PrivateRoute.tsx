@@ -15,7 +15,7 @@ const PrivateRoute = ({component: Component, phones, getPhonesHandler, ...rest}:
         <Route {...rest} render={props => (
             isLogin()
                 ? <Component phones={phones} getPhonesHandler={getPhonesHandler} {...props} />
-                : <Redirect to="/signin" />
+                : <Redirect to="/login" />
         )} />
     );
 };

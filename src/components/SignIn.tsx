@@ -5,7 +5,7 @@ const SignIn = (props: RouteComponentProps): React.ReactElement => {
 
     const handleLogin = () => {
         login();
-        props.history.push('/dashboard');
+        props.history.push('/');
     }
     return (
         <div>

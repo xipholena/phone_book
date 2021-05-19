@@ -45,13 +45,13 @@ const App: FC = (): React.ReactElement => {
 
     return (
         <Switch>
-            <PublicRoute  restricted={false} component={Home} path="/" exact />
-            <PublicRoute restricted={true} component={SignIn} path="/signin" exact />
+            <PublicRoute  restricted={false} component={Home} path="/home" exact />
+            <PublicRoute restricted={true} component={SignIn} path="/login" exact />
             <PrivateRoute
-                component={Book} path="/dashboard" exact
+                component={Book} path="/" exact //was /dashboard
                 phones={phones} getPhonesHandler={getPhonesHandler}
             />
-            <Redirect path="/phone_book" to='/'/>
+            <Redirect path="/phone_book" to='/login'/>
         </Switch>
 
     );

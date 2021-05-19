@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {IPerson} from "../containers/App";
+import {Link} from "react-router-dom";
 
 interface BookProps {
     phones: Array<IPerson>,
@@ -22,6 +23,7 @@ const Book = ({phones, getPhonesHandler}: BookProps): React.ReactElement => {
                         </li>
                     ))}
                 </ul>
+                <Link to="/home">Go home</Link>
             </div>
 
         </main>

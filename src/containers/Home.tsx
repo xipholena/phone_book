@@ -33,7 +33,7 @@ class Home extends Component<RouteComponentProps<MatchParams>, HomeState> {
 
                 {this.state.isLogin ?
                     <button onClick={() => this.handleLogout()}>Click here to log out</button>
-                    : <Link to="/signin">Go to sign in page</Link>
+                    : <Link to="/login">Go to sign in page</Link>
                 }
             </div>
         );

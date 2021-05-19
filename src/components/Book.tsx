@@ -8,6 +8,7 @@ interface BookProps {
 }
 
 const Book = ({phones, getPhonesHandler}: BookProps): React.ReactElement => {
+
     useEffect(() => {
         getPhonesHandler();
         // eslint-disable-next-line

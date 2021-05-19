@@ -18,11 +18,25 @@ const Book = ({phones, getPhonesHandler}: BookProps): React.ReactElement => {
         <main className="main">
             <div className="container">
                 <ul>
-                    {phones?.map(({id, name, phone}: IPerson) => (
-                        <li key={id}>
-                            {name.last} {name.first}, phone: {phone}
-                        </li>
-                    ))}
+                    {phones?.map(({id, name, phone}: IPerson, i) => {
+                        if (phones[i-1]?.name.last.slice(0, 1) !== phones[i]?.name.last.slice(0, 1)) {
+                           return (
+                               <div key={id}>
+                                   <p>{phones[i].name.last.slice(0,1)} </p>
+                                   <li>
+                                        {name.last} {name.first}, phone: {phone}
+                                   </li>
+                               </div>
+                           )
+                        } else {
+                          return (
+                              <li key={id}>
+                                {name.last} {name.first}, phone: {phone}
+                              </li>
+                          )
+                        }
+
+                    })}
                 </ul>
                 <Link to="/home">Go home</Link>
             </div>

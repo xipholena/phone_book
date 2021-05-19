@@ -21,7 +21,7 @@ export interface IPerson {
     email?: string,
     phone: string,
     address?: string,
-    registered: string
+    registered: string,
 }
 
 const App: FC = (): React.ReactElement => {
@@ -35,7 +35,7 @@ const App: FC = (): React.ReactElement => {
            }
        })
            .then((response) => response.json())
-           .then((data) => setPhones(data.phones.sort((a: IPerson, b:IPerson ):any => a.name.last.localeCompare(b.name.last))))
+           .then((data) => setPhones(data.phones.sort((a: IPerson, b:IPerson ):any => a.name?.last.localeCompare(b.name?.last))))
            .catch((e) => {
                console.log(e.toString())
            })

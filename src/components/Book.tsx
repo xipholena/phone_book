@@ -21,12 +21,14 @@ const Book = ({phones, getPhonesHandler}: BookProps): React.ReactElement => {
                     {phones?.map(({id, name, phone}: IPerson, i) => {
                         if (phones[i-1]?.name.last.slice(0, 1) !== phones[i]?.name.last.slice(0, 1)) {
                            return (
-                               <div key={id}>
+                               <li key={id} className="withSeparator">
                                    <p>{phones[i].name.last.slice(0,1)} </p>
-                                   <li>
-                                        {name.last} {name.first}, phone: {phone}
-                                   </li>
-                               </div>
+                                   <ul className="firstInRow">
+                                       <li>
+                                           {name.last} {name.first}, phone: {phone}
+                                       </li>
+                                   </ul>
+                               </li>
                            )
                         } else {
                           return (

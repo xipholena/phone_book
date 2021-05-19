@@ -1,12 +1,12 @@
-import React, {useState, useEffect, FC} from 'react';
+import React, {useState, FC} from 'react';
 import './App.css';
-import {useHistory, Switch, Redirect, Route} from 'react-router-dom';
+import {Redirect, Switch} from 'react-router-dom';
 
 import PublicRoute from "../components/PublicRoute";
 import PrivateRoute from "../components/PrivateRoute";
 import SignIn from "../components/SignIn";
 import Book from "../components/Book";
-import Home from "../components/Home";
+import Home from "./Home";
 interface IName {
     first: string,
     last: string
@@ -26,8 +26,6 @@ export interface IPerson {
 
 const App: FC = (): React.ReactElement => {
     const [phones, setPhones] = useState<Array<IPerson>>([]);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const history = useHistory();
 
    async function getPhonesHandler(){
        return fetch('http://localhost:3000/phones.json', {
@@ -42,18 +40,18 @@ const App: FC = (): React.ReactElement => {
                console.log(e.toString())
            })
    }
-    useEffect(() => {
-        /*getPhonesHandler();*/
-    }, [])
+
 
 
     return (
         <Switch>
             <PublicRoute  restricted={false} component={Home} path="/" exact />
             <PublicRoute restricted={true} component={SignIn} path="/signin" exact />
-            <PrivateRoute component={Book} path="/dashboard"
-                          phones={phones} getPhonesHandler={getPhonesHandler}
-                          exact />
+            <PrivateRoute
+                component={Book} path="/dashboard" exact
+                phones={phones} getPhonesHandler={getPhonesHandler}
+            />
+            <Redirect path="/phone_book" to='/'/>
         </Switch>
 
     );

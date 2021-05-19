@@ -1,16 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { login } from '../utils';
-
-const SignIn = (props) => {
+import {RouteComponentProps} from 'react-router-dom'
+const SignIn = (props: RouteComponentProps): React.ReactElement => {
 
     const handleLogin = () => {
         login();
         props.history.push('/dashboard');
     }
-
-    useEffect(() => {
-        console.log(props)
-    }, [])
     return (
         <div>
             <h1>Sign in</h1>

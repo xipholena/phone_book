@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import { logout, isLogin } from '../utils';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
-class Home extends Component {
 
-    constructor(props) {
+type MatchParams = {
+    id: string
+}
+type HomeState = {
+    isLogin: boolean
+}
+class Home extends Component<RouteComponentProps<MatchParams>, HomeState> {
+
+    constructor(props: RouteComponentProps<MatchParams>) {
         super(props);
 
         this.state = {
             isLogin: isLogin()
         }
-
     }
 
-    handleLogout = () => {
+    handleLogout = ():void => {
         logout();
         this.setState({
             isLogin: false
         })
     }
 
-    render() {
+    render(): React.ReactElement  {
         return (
             <div>
                 <h1>Home</h1>

@@ -10,6 +10,9 @@ const SignIn = (props: RouteComponentProps): React.ReactElement => {
     return (
         <div>
             <h1>Sign in</h1>
+            <form action="">
+
+            </form>
             <button onClick={() => handleLogin()}>Click here to log in</button>
         </div>
     );

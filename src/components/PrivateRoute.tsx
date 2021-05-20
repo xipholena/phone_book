@@ -6,14 +6,14 @@ import { IPerson } from '../containers/App';
 type PrivateRouteProps = {
   component: any;
   phones: Array<IPerson>;
-  getPhonesHandler: any;
+  /*getPhonesHandler: any;*/
   path: string;
   exact: boolean;
 };
 const PrivateRoute = ({
   component: Component,
   phones,
-  getPhonesHandler,
+  /*getPhonesHandler,*/
   ...rest
 }: PrivateRouteProps): React.ReactElement => {
   return (
@@ -21,7 +21,7 @@ const PrivateRoute = ({
       {...rest}
       render={props =>
         isLogin() ? (
-          <Component phones={phones} getPhonesHandler={getPhonesHandler} {...props} />
+          <Component phones={phones} /*getPhonesHandler={getPhonesHandler}*/ {...props} />
         ) : (
           <Redirect to='/login' />
         )

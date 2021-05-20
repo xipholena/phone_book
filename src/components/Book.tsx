@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 interface BookProps {
   phones: Array<IPerson>;
-  getPhonesHandler: () => void;
+  //getPhonesHandler: () => void;
 }
 
-const Book = ({ phones, getPhonesHandler }: BookProps): React.ReactElement => {
+const Book = ({ phones /*getPhonesHandler */ }: BookProps): React.ReactElement => {
   useEffect(() => {
-    getPhonesHandler();
+    //getPhonesHandler();
     // eslint-disable-next-line
   }, []);
 

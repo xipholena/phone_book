@@ -1,16 +1,15 @@
-import React, { useState, FC } from 'react';
+import React, { useState, FC, useEffect } from 'react';
 import './App.css';
 import { Redirect, Switch } from 'react-router-dom';
-import {connect} from "react-redux";
-
+import { connect } from 'react-redux';
 
 import PublicRoute from '../components/PublicRoute';
 import PrivateRoute from '../components/PrivateRoute';
-import {SignIn} from '../components/SignIn';
+import SignIn from '../components/SignIn';
 import Book from '../components/Book';
 import Home from './Home';
 
-import {logUser, setPhones} from '../reducers'
+import { logUser, setPhones } from '../reducers';
 interface IName {
   first: string;
   last: string;
@@ -28,19 +27,19 @@ export interface IPerson {
   registered: string;
 }
 const mapStateToProps = (state: any) => {
-    return {
-        phones: state.phones,
-        isLogged: state.isLogged,
-    }
-}
+  return {
+    phones: state.phones,
+    isLogged: state.isLogged,
+  };
+};
 const mapDispatchToProps = (dispatch: any) => {
-    //call reducers with DOM events to App props
-    return {
-        onLogUser: () => dispatch(logUser()),
-        onSetPhones: () => dispatch(setPhones()),
-    }
-}
-const App = ({phones}: {phones: Array<IPerson>}, onSetPhones: any): React.ReactElement => {
+  //call reducers with DOM events to App props
+  return {
+    onLogUser: () => dispatch(logUser()),
+    //onSetPhones: () => dispatch(setPhones()),
+  };
+};
+const App = ({ phones }: { phones: Array<IPerson> }, onSetPhones: any): React.ReactElement => {
   //const [phones, setPhones] = useState<Array<IPerson>>([]);
 
   /*async function getPhonesHandler() {
@@ -56,21 +55,17 @@ const App = ({phones}: {phones: Array<IPerson>}, onSetPhones: any): React.ReactE
         console.log(e.toString());
       });
   }*/
-
+  useEffect(() => {
+    console.log(onSetPhones);
+  }, []);
   return (
     <Switch>
       <PublicRoute restricted={false} component={Home} path='/home' exact />
       <PublicRoute restricted={true} component={SignIn} path='/login' exact />
-      <PrivateRoute
-        component={Book}
-        path='/'
-        exact
-        phones={phones}
-        getPhonesHandler={onSetPhones}
-      />
+      <PrivateRoute component={Book} path='/' exact phones={phones} />
       <Redirect path='/phone_book' to='/login' />
     </Switch>
   );
 };
-
+/*getPhonesHandler = {onSetPhones}*/
 export default connect(mapStateToProps, mapDispatchToProps)(App);

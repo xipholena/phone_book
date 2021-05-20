@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 import { LOG_IN, LOG_OUT, GET_PHONES } from './constants';
 
 export const initialState = {
@@ -40,4 +41,5 @@ export const setPhones = (state = initialState.phones, action) => {
 export const rootReducer = combineReducers({
   logUser,
   setPhones,
+  form: formReducer
 });

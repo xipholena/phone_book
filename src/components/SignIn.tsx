@@ -36,13 +36,11 @@ let SignIn:FC = (props: any) => {
   //  console.log('history', history)
 
     //was props: RouteComponentProps
-    const handleLogin = () => { //dispatch logUser change action here ...?
-
-        props.dispatch({ type: LOG_IN/*, payload: true*/ })
+    const handleLogin = () => {
+        props.dispatch({ type: LOG_IN})
         console.log(store.getState())
         loginToStorage(state.form.fieldLevelValidation?.values?.email);
         history.push('/');
-        //console.log('values:', state.form.fieldLevelValidation?.values)
     }
 
     return (

@@ -58,14 +58,10 @@ const App = ({ phones }: { phones: Array<IPerson> }, onSetPhones: any): React.Re
   useEffect(() => {
     console.log(onSetPhones);
   }, []);
-  const submit = (values: any) => {
-    // print the form values to the console
-    console.log(values)
-  }
   return (
     <Switch>
       <PublicRoute restricted={false} component={Home} path='/home' exact />
-      <PublicRoute restricted={true} onSubmit={submit} component={SignIn} path='/login' exact />
+      <PublicRoute restricted={true} component={SignIn} path='/login' exact />
       <PrivateRoute component={Book} path='/' exact phones={phones} />
       <Redirect path='/phone_book' to='/login' />
     </Switch>

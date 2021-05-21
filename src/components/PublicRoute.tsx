@@ -7,7 +7,6 @@ type PublicRouteProps = {
   restricted: any;
   path: string;
   exact: boolean;
-  onSubmit?: (arg0: any) => void
 };
 const PublicRoute = ({ component: Component, restricted, ...rest }: PublicRouteProps): React.ReactElement => {
   return (

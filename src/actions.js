@@ -1,19 +1,12 @@
 import { LOG_IN, LOG_OUT, GET_PHONES } from './constants';
 import { IPerson } from './containers/App';
 
-export const logIn = (email, password) => dispatch => {
-  const loginHandler = email => {
-    //validation here??
-    localStorage.setItem(email, email);
-  };
-  dispatch({ type: LOG_IN, payload: { email, password } });
+export const logIn = (email, password) => {
+  return {type: LOG_IN, payload: { email, password}};
 };
 
-export const logOut = email => dispatch => {
-  const logout = () => {
-    localStorage.removeItem(email);
-  };
-  dispatch({ type: LOG_OUT, payload: email });
+export const logOut = email => {
+  return {type: LOG_OUT, payload: email};
 };
 
 export const getPhones = () => dispatch => {

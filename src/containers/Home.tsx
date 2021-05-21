@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { logout, isLogin } from '../utils';
+import { logoutOfStorage, isLogin } from '../utils';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
 type MatchParams = {
@@ -18,7 +18,7 @@ class Home extends Component<RouteComponentProps<MatchParams>, HomeState> {
   }
 
   handleLogout = (): void => {
-    logout();
+    logoutOfStorage() ;
     this.setState({
       isLogin: false,
     });

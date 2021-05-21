@@ -10,23 +10,27 @@ import { reduxForm, change, formValues, Field } from 'redux-form';
 
 
 const RenderField = (meta: any) => {
+  useEffect(() => {
+    console.log( meta, meta.meta.warning)
+  })
 
   return (
       <>
         <input
             type="text"
         />
-        { meta.meta.error && <span>{meta.meta.error}</span>}
+        {meta.meta.touched && (meta.meta.error && <span>{meta.meta.error}</span>)}
       </>
   )
 }
 
-export const SignIn = ({ routeProps, inputEmailValidator, handleSubmit }: any): React.ReactElement => {
+export const SignIn = ({ routeProps, handleSubmit, pristine, reset, submitting }: any): React.ReactElement => {
   //was props: RouteComponentProps
   /*const handleLogin = () => {
     login();
     routeProps.history.push('/');
   };*/
+
   return (
     <div>
       <h1>Sign in</h1>
@@ -35,13 +39,15 @@ export const SignIn = ({ routeProps, inputEmailValidator, handleSubmit }: any): 
           name='emailField' //Equals to values.emailField in validator
           type='text'
           component={RenderField} // Field = HOC, component = component to wrap
+          validate={[required, email]}
         />
         <Field
           name='passwordField' //Equals to values.passwordField in validator
           type='text'
           component={RenderField} // Field = HOC, component = component to wrap
+          validate={[required, length, capital, small, digits]}
         />
-        <button>Click here to log in</button>
+        <button type="button">Click here to log in</button>
 
       </form>
     </div>
@@ -52,14 +58,23 @@ interface ValidationValues {
   emailField?: string; //unnecessary because errors object initially empty
   passwordField?: string;
 }
-
+const required = (value: string) => !value ? 'Please provide us your email' : undefined
+const email = (value: string) => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+        ? 'Invalid email address'
+        : undefined
+const length = (value: string) => value.length < 8 ? 'Needs at least 8 symbools' : undefined
+const capital = (value: string) => value.search(/[A-Z]/) ? 'Must contain at least 1 capital letter' : undefined
+const small = (value: string) => value.search(/[a-z]/) ?  'Must contain at least 1 small letter': undefined
+const digits = (value: string) => value.search(/[0-9]/)? 'Must contain at least 1 digit' : undefined
 export default reduxForm({
-  form: 'signIn', //equals dispatched changes // a unique identifier for this form
-  initialValues: {
+  form: 'fieldLevelValidation', //equals dispatched changes // a unique identifier for this form
+  /*initialValues: {
     emailField: '',
     passwordField: '',
-  },
-  validate: (values: ValidationValues) => {
+  },*/
+
+
+  /*validate: (values: ValidationValues) => {
     //DOM e.target.value?
     const errors: ValidationValues = {}; //collecting errors to display
     if (!values.emailField) {
@@ -80,7 +95,7 @@ export default reduxForm({
       errors.passwordField = 'Must contain at least 1 digit';
     }
     return errors;
-  },
+  },*/
 })(SignIn);
 
 //export default SignIn; //Module cannot have multiple default exports

@@ -27,9 +27,11 @@ export interface IPerson {
   registered: string;
 }
 const mapStateToProps = (state: any) => {
+  console.log('App', state)
   return {
-    phones: state.phones,
-    isLogged: state.isLogged,
+    phones: state.setPhones.phones,
+    isLogged: state.logUser.isLogged,
+    form: state.form
   };
 };
 const mapDispatchToProps = (dispatch: any) => {
@@ -40,21 +42,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 const App = ({ phones }: { phones: Array<IPerson> }, onSetPhones: any): React.ReactElement => {
-  //const [phones, setPhones] = useState<Array<IPerson>>([]);
 
-  /*async function getPhonesHandler() {
-    return fetch('http://localhost:3000/phones.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(data => setPhones(data.phones.sort((a: IPerson, b: IPerson) => a.name.last.localeCompare(b.name.last))))
-      .catch(e => {
-        console.log(e.toString());
-      });
-  }*/
   useEffect(() => {
     console.log(onSetPhones);
   }, []);

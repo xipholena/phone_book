@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { isLogin } from '../utils';
+import { isInStorage } from '../utils';
+import store from "../store";
 
 type PublicRouteProps = {
   component: any;
@@ -9,10 +10,12 @@ type PublicRouteProps = {
   exact: boolean;
 };
 const PublicRoute = ({ component: Component, restricted, ...rest }: PublicRouteProps): React.ReactElement => {
+  const state: any = store.getState()
+  //console.log(state)
   return (
     <Route
       {...rest}
-      render={props => (isLogin() && restricted ? <Redirect to='/dashboard' /> : <Component {...props} />)}
+      render={props => (isInStorage() && restricted ? <Redirect to='/' /> : <Component {...props} />)}
     />
   );
 };

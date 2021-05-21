@@ -1,6 +1,7 @@
 import React, {FC} from 'react'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import store from "../store";
+import {LOG_IN} from "../constants";
 import {logIn} from "../actions";
 import {loginToStorage} from "../utils";
 
@@ -15,7 +16,7 @@ const digits = (value: string) => value.search(/[0-9]/) === -1 ? 'Must contain a
 
 const renderField = ({ input, label, type, meta }: any) => {
     const { touched, error, warning } = meta;
-    console.log(meta)
+    //console.log(meta)
     return (
         <div>
             <label>{label}</label>
@@ -27,19 +28,20 @@ const renderField = ({ input, label, type, meta }: any) => {
     )
 }
 
-;
 
 
 let SignIn:FC = (props: any) => {
-    const { routeProps, handleSubmit, reset, onSubmit} = props
+    const { history, handleSubmit, reset, onSubmit} = props
     const state = store.getState()
-    //console.log('values:', state.form.fieldLevelValidation?.values)
+  //  console.log('history', history)
 
     //was props: RouteComponentProps
-    const handleLogin = () => {
-        logIn(state.form.fieldLevelValidation?.values.email);
-        loginToStorage(state.form.fieldLevelValidation?.values.email);
-        //routeProps.history.push('/');
+    const handleLogin = () => { //dispatch logUser change action here ...?
+
+        props.dispatch({ type: LOG_IN/*, payload: true*/ })
+        console.log(store.getState())
+        loginToStorage(state.form.fieldLevelValidation?.values?.email);
+        history.push('/');
         //console.log('values:', state.form.fieldLevelValidation?.values)
     }
 

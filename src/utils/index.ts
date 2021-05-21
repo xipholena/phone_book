@@ -1,14 +1,14 @@
-const TOKEN_KEY = 'jwt';
+const TOKEN_KEY = 'current user';
 
 export const loginToStorage = (email: string): void => {
-  localStorage.setItem(email, email);
+  localStorage.setItem(TOKEN_KEY, email);
 };
 
-export const logoutOfStorage = (): void => {
+export const logoutOfStorage = (/*email: string*/): void => {
   localStorage.removeItem(TOKEN_KEY);
 };
 
-export const isLogin = (): boolean => {
+export const isInStorage = (): boolean => {
   if (localStorage.getItem(TOKEN_KEY)) {
     return true;
   }

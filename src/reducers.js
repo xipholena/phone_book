@@ -2,14 +2,12 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form'
 import { LOG_IN, LOG_OUT, GET_PHONES } from './constants';
 
-export const initialState = {
-  isLogged: false,
-  phones: [],
-  //emailField: '', //controlled by redux-forms?
-  //passwordField: '',
+export const initialStateLogUser = {
+  isLogged: false, //change to false!!!
+
 };
 
-export const logUser = (state = initialState.isLogged, action) => {
+export const logUser = (state = initialStateLogUser, action) => {
   switch (action.type) {
     case LOG_IN:
       return {
@@ -25,8 +23,10 @@ export const logUser = (state = initialState.isLogged, action) => {
       return state;
   }
 };
-
-export const setPhones = (state = initialState.phones, action) => {
+export const initialStatePhones = {
+  phones: [],
+};
+export const setPhones = (state = initialStatePhones, action) => {
   switch (action.type) {
     case GET_PHONES:
       return {

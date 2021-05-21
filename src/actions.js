@@ -1,8 +1,12 @@
 import { LOG_IN, LOG_OUT, GET_PHONES } from './constants';
 import { IPerson } from './containers/App';
+import store from "./store";
 
-export const logIn = (email, password) => {
-  return {type: LOG_IN, payload: { email, password}};
+export const logIn = (nowLogged) =>/* (dispatch)  => */{
+  alert('ola actions')
+ // return {type: LOG_IN, payload: nowLogged};
+  //dispatch({ type: LOG_IN, payload: nowLogged });
+  console.log(store.getState())
 };
 
 export const logOut = email => {

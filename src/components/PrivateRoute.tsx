@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { IPerson } from '../containers/App';
 import store from "../store";
+import {ROUTES} from '../constants'
 
 type PrivateRouteProps = {
   component: any;
@@ -10,6 +11,7 @@ type PrivateRouteProps = {
   path: string;
   exact: boolean;
 };
+
 const PrivateRoute = ({
   component: Component,
   phones,
@@ -24,7 +26,7 @@ const PrivateRoute = ({
           state.logUser.isLogged ? (
           <Component phones={phones} /*getPhonesHandler={getPhonesHandler}*/ {...props} />
         ) : (
-          <Redirect to='/login' />
+          <Redirect to={{pathname: ROUTES.login}} />
         )
       }
     />

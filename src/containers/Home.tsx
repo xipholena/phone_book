@@ -4,6 +4,7 @@ import { Link} from 'react-router-dom';
 import store from "../store";
 //import {LOG_OUT} from "../constants";
 import {logOut} from "../actions";
+import {ROUTES} from "../constants";
 
 // RouteComponentProps<MatchParams>
 const Home = () =>  {
@@ -20,7 +21,7 @@ const Home = () =>  {
         {state.logUser.isLogged || isInStorage()  ? (
             <button onClick={() => handleLogout()}>Click here to log out</button>
         ) : (
-            <Link to='/login'>Go to sign in page</Link>
+            <Link to={{pathname: ROUTES.login}}>Go to sign in page</Link>
         )}
       </div>
   );

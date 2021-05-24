@@ -5,24 +5,22 @@ import store from "../store";
 import {logIn} from "../actions";
 import {loginToStorage} from "../utils";
 import {useForm} from "react-hook-form";
-
+import {ROUTES} from "../constants";
 
 let SignIn:FC = (props: any) => {
     const { history, reset} = props;
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const state = store.getState()
     const emailValue = watch("email");
+
     //was props: RouteComponentProps
     const handleLogin = () => {
        //props.dispatch({ type: LOG_IN })
        //store.dispatch({ type: LOG_IN })
         logIn(true);
         loginToStorage(emailValue);
-        history.push('/');
+        history.push(ROUTES.main);
     }
-    console.log(watch("email")); // you can watch individual input by pass the name of the input
-    console.log('errors.email', errors.email)
-    console.log('errors.email.message', errors.email?.message)
 
     return (
         <form onSubmit={handleSubmit(handleLogin)} className="form"> {/* your form submit function which will invoke after successful validation*/}

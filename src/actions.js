@@ -2,15 +2,12 @@ import { LOG_IN, LOG_OUT, GET_PHONES } from './constants';
 import { IPerson } from './containers/App';
 import store from "./store";
 
-export const logIn = (nowLogged) =>/* (dispatch)  => */{
-  alert('ola actions')
- // return {type: LOG_IN, payload: nowLogged};
-  //dispatch({ type: LOG_IN, payload: nowLogged });
-  console.log(store.getState())
+export const logIn = (nowLogged) =>  {
+  store.dispatch({ type: LOG_IN, payload: nowLogged });
 };
 
-export const logOut = email => {
-  return {type: LOG_OUT, payload: email};
+export const logOut = () => {
+  store.dispatch({type: LOG_OUT});
 };
 
 export const getPhones = () => dispatch => {

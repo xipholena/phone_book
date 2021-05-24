@@ -33,12 +33,12 @@ const renderField = ({ input, label, type, meta }: any) => {
 let SignIn:FC = (props: any) => {
     const { history, handleSubmit, reset, onSubmit} = props
     const state = store.getState()
-  //  console.log('history', history)
 
     //was props: RouteComponentProps
     const handleLogin = () => {
-        props.dispatch({ type: LOG_IN})
-        console.log(store.getState())
+       //props.dispatch({ type: LOG_IN })
+       //store.dispatch({ type: LOG_IN })
+        logIn(true);
         loginToStorage(state.form.fieldLevelValidation?.values?.email);
         history.push('/');
     }

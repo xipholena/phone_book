@@ -11,7 +11,6 @@ type PublicRouteProps = {
 };
 const PublicRoute = ({ component: Component, restricted, ...rest }: PublicRouteProps): React.ReactElement => {
   const state: any = store.getState()
-  //console.log(state)
   return (
     <Route
       {...rest}

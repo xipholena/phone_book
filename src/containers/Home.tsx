@@ -3,6 +3,7 @@ import { logoutOfStorage,  isInStorage } from '../utils';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import store from "../store";
 import {LOG_OUT} from "../constants";
+import {logOut} from "../actions";
 
 // RouteComponentProps<MatchParams>
 class Home extends Component<any> {
@@ -12,7 +13,8 @@ class Home extends Component<any> {
 
   handleLogout = (): void => {
     logoutOfStorage();
-    store.dispatch({type: LOG_OUT})
+    logOut();
+    //store.dispatch({type: LOG_OUT})
     //this.props.dispatch({type: LOG_OUT})
   };
 

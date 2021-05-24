@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { isInStorage } from '../utils';
 import { IPerson } from '../containers/App';
 import store from "../store";
 
@@ -18,8 +17,6 @@ const PrivateRoute = ({
   ...rest
 }: PrivateRouteProps): React.ReactElement => {
     const state: any = store.getState();
-    console.log('PrivateRoute',state?.form.fieldLevelValidation?.values?.email)
-    console.log('state.logUser.isLogged', state.logUser.isLogged)
   return (
     <Route
       {...rest}

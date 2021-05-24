@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { isInStorage } from '../utils';
-import store from "../store";
 
 type PublicRouteProps = {
   component: any;
@@ -10,7 +9,6 @@ type PublicRouteProps = {
   exact: boolean;
 };
 const PublicRoute = ({ component: Component, restricted, ...rest }: PublicRouteProps): React.ReactElement => {
-  const state: any = store.getState()
   return (
     <Route
       {...rest}

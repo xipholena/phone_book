@@ -4,7 +4,7 @@ export const loginToStorage = (email: string): void => {
   localStorage.setItem(TOKEN_KEY, email);
 };
 
-export const logoutOfStorage = (/*email: string*/): void => {
+export const logoutOfStorage = (): void => {
   localStorage.removeItem(TOKEN_KEY);
 };
 

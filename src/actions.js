@@ -1,5 +1,5 @@
 import { LOG_IN, LOG_OUT, GET_PHONES } from './constants';
-import { IPerson } from './containers/App';
+//import { IPerson } from './containers/App';
 import store from "./store";
 
 export const logIn = (nowLogged) =>  {
@@ -30,7 +30,3 @@ export const getPhones = () => dispatch => {
       });
   }
 };
-
-//const logIn = (email, password) => ({type: LOG_IN, payload: {email, password}})
-// const logOut = (email) => ({type: LOG_OUT, payload: email})//email to find and remove key from localStorage
-//const getPhones = (url) => ({type: GET_PHONES, payload: url})

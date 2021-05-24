@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form'
 import { LOG_IN, LOG_OUT, GET_PHONES } from './constants';
 
 export const initialStateLogUser = {
-  isLogged: false, //change to false!!!
-
+  isLogged: false,
 };
 
 export const logUser = (state = initialStateLogUser, action) => {
@@ -40,6 +38,5 @@ export const setPhones = (state = initialStatePhones, action) => {
 
 export const rootReducer = combineReducers({
   logUser,
-  setPhones,
-  form: formReducer
+  setPhones
 });

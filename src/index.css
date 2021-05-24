@@ -6,6 +6,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+* {
+  box-sizing: border-box;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -28,4 +32,27 @@ code {
 }
 .withSeparator {
   list-style-type: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: #744d44;
+}
+.form__field {
+  padding: 7px 15px;
+  margin: 5px 0;
+  border: 2px inset paleturquoise;
+  border-radius: 5px;
+}
+.form__button {
+  padding: 7px 15px;
+  margin: 5px 0;
+  border: 2px outset paleturquoise;
+  border-radius: 5px;
+}
+ .form__field {
+  width: 300px;
 }

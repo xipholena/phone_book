@@ -22,34 +22,6 @@ export const logUser = (state = initialStateLogUser, action) => {
       return state;
   }
 };
-export const initialStatePhones = {
-  phones: [],
-};
-export const setPhones = (state = initialStatePhones, action) => {
-  switch (action.type) {
-    case GET_PHONES:
-      return {
-        ...state,
-        phones: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-function counter(state = 0, action) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'INCREMENT_IF_ODD':
-      return (state % 2 !== 0) ? state + 1 : state
-    case 'DECREMENT':
-      return state - 1
-    default:
-      return state
-  }
-}
-
 
 const initialStateFetch = {
   users: [],
@@ -83,7 +55,5 @@ export function users(state = initialStateFetch, action) {
 
 export const rootReducer = combineReducers({
   logUser,
-  setPhones,
-  counter, //example
   users,
 });

@@ -46,7 +46,7 @@ interface CounterProps { //saga demo component props
     onIncrementAsync: () => any,
 }
 const mapStateToProps = (state: any) => ({
-    phones: state.setPhones.phones,
+    phones: state.users.users.phones,
     isLogged: state.logUser.isLogged,
     form: state.form
 });
@@ -59,40 +59,13 @@ const App = ({ phones }: { phones: Array<IPerson> }): React.ReactElement => {
         <Switch>
           <PublicRoute restricted={false} component={Home} path={ROUTES.home} exact />
           <PublicRoute restricted={true} component={SignIn} path={ROUTES.login} exact />
-          <PrivateRoute component={Book} path={ROUTES.main} exact phones={phones} />
+          <PrivateRoute component={Book} path={ROUTES.main} exact  />
           <Redirect path={ROUTES.projectName} to={{pathname: ROUTES.login}} />
         </Switch>
-          <Counter
-              value={state as GlobalState}
-              onIncrement={() => sagaAction('INCREMENT')}
-              onDecrement={() => sagaAction('DECREMENT')}
-              onIncrementAsync={() => sagaAction('INCREMENT_ASYNC')} />,
       </>
   );
 };
 
-const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }: CounterProps) => {
-    //console.log(value,  onIncrement, onDecrement, onIncrementAsync) //global state
-    return (
-        <div>
-            <button onClick={onIncrementAsync}>
-                Increment after 1 second
-            </button>
-            {' '}
-            <button onClick={onIncrement}>
-                Increment
-            </button>
-            {' '}
-            <button onClick={onDecrement}>
-                Decrement
-            </button>
-            <hr />
-            <div>
-                Clicked: {value.counter} times
-            </div>
-        </div>
-    )
-}
 
-/*getPhonesHandler = {onSetPhones}*/
+
 export default connect(mapStateToProps)(App);

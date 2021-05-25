@@ -6,16 +6,12 @@ import {ROUTES} from '../constants'
 
 type PrivateRouteProps = {
   component: any;
-  phones: Array<IPerson>;
-  /*getPhonesHandler: any;*/
   path: string;
   exact: boolean;
 };
 
 const PrivateRoute = ({
   component: Component,
-  phones,
-  /*getPhonesHandler,*/
   ...rest
 }: PrivateRouteProps): React.ReactElement => {
     const state: any = store.getState();
@@ -24,7 +20,7 @@ const PrivateRoute = ({
       {...rest}
       render={props =>
           state.logUser.isLogged ? (
-          <Component phones={phones} /*getPhonesHandler={getPhonesHandler}*/ {...props} />
+          <Component  {...props} />
         ) : (
           <Redirect to={{pathname: ROUTES.login}} />
         )

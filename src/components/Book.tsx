@@ -8,8 +8,12 @@ interface BookProps {
   phones: Array<IPerson>;
 }
 
-const Book = ({ phones /*getPhonesHandler */ }: BookProps): React.ReactElement => {
+
+
+const Book = (): React.ReactElement => {
  const dispatch = useDispatch();
+    // @ts-ignore
+ const phones = useSelector(state => state.users.users.phones.sort((a, b) => a.name.last.localeCompare(b.name.last)))
   // @ts-ignore
     const users = useSelector(state => state.users.users);
     // @ts-ignore
@@ -18,15 +22,18 @@ const Book = ({ phones /*getPhonesHandler */ }: BookProps): React.ReactElement =
   const error = useSelector(state => state.users.error);
 
   useEffect(() => {
-      alert('ola book')
     dispatch(getUsers());
   }, [])
+
+useEffect(() => {
+    console.log(phones)
+}, [phones])
 
   return (
     <main className='main'>
       <div className='container'>
         <ul>
-          {phones?.map(({ id, name, phone }: IPerson, i) => {
+          {phones?.map(({ id, name, phone }: IPerson, i: number) => {
             if (phones[i - 1]?.name.last.slice(0, 1) !== phones[i]?.name.last.slice(0, 1)) {
               return (
                 <li key={id} className='withSeparator'>

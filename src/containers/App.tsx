@@ -1,7 +1,7 @@
 import React, {useEffect } from 'react';
 import './App.css';
 import { Redirect, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 
 import PublicRoute from '../components/PublicRoute';
 import PrivateRoute from '../components/PrivateRoute';
@@ -10,6 +10,7 @@ import Book from '../components/Book';
 import Home from './Home';
 import store from "../store";
 import {ROUTES} from "../constants";
+import {sagaAction} from "../store";
 
 interface IName {
   first: string;
@@ -30,6 +31,7 @@ export interface IPerson {
 interface GlobalState {
     logUser: ILogUser,
     setPhones: ISetPhones,
+    counter: number,
 }
 interface ILogUser {
     isLogged: boolean
@@ -49,8 +51,9 @@ const mapStateToProps = (state: any) => ({
     form: state.form
 });
 
-const action = (type: any /*обычно это строка, в саге ??*/) => store.dispatch({type});
+
 const App = ({ phones }: { phones: Array<IPerson> }): React.ReactElement => {
+    const state = useSelector(state => state)
   return (
       <>
         <Switch>
@@ -59,17 +62,17 @@ const App = ({ phones }: { phones: Array<IPerson> }): React.ReactElement => {
           <PrivateRoute component={Book} path={ROUTES.main} exact phones={phones} />
           <Redirect path={ROUTES.projectName} to={{pathname: ROUTES.login}} />
         </Switch>
-          {/*<Counter
-              value={store.getState()}
-              onIncrement={() => action('INCREMENT')}
-              onDecrement={() => action('DECREMENT')}
-              onIncrementAsync={() => action('INCREMENT_ASYNC')}
-          />*/},
+          <Counter
+              value={state as GlobalState}
+              onIncrement={() => sagaAction('INCREMENT')}
+              onDecrement={() => sagaAction('DECREMENT')}
+              onIncrementAsync={() => sagaAction('INCREMENT_ASYNC')} />,
       </>
   );
 };
+
 const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }: CounterProps) => {
-    console.log(value) //Global State??
+    //console.log(value,  onIncrement, onDecrement, onIncrementAsync) //global state
     return (
         <div>
             <button onClick={onIncrementAsync}>
@@ -83,9 +86,9 @@ const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }: CounterP
             <button onClick={onDecrement}>
                 Decrement
             </button>
-            <hr/>
+            <hr />
             <div>
-                Clicked: {value} times
+                Clicked: {value.counter} times
             </div>
         </div>
     )

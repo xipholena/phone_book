@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { LOG_IN, LOG_OUT, GET_PHONES } from './constants';
+import {GET_USERS_REQUESTED, GET_USERS_SUCCESS, GET_USERS_FAILED} from "./constants";
 
 export const initialStateLogUser = {
   isLogged: false,
@@ -36,7 +37,53 @@ export const setPhones = (state = initialStatePhones, action) => {
   }
 };
 
+function counter(state = 0, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1
+    case 'INCREMENT_IF_ODD':
+      return (state % 2 !== 0) ? state + 1 : state
+    case 'DECREMENT':
+      return state - 1
+    default:
+      return state
+  }
+}
+
+
+const initialStateFetch = {
+  users: [],
+  loading: false,
+  error: null,
+}
+
+export function users(state = initialStateFetch, action) {
+  switch (action.type) {
+    case GET_USERS_REQUESTED: //type.GET_USERS_REQUESTED: ???
+      return {
+        ...state,
+        loading: true,
+      }
+    case GET_USERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        users: action.users
+      }
+    case GET_USERS_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.message,
+      }
+    default:
+      return state
+  }
+}
+
 export const rootReducer = combineReducers({
   logUser,
-  setPhones
+  setPhones,
+  counter, //example
+  users,
 });

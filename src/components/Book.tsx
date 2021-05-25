@@ -1,17 +1,26 @@
 import React, { useEffect } from 'react';
 import { IPerson } from '../containers/App';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector} from "react-redux";
+import {getUsers} from "../actions";
 
 interface BookProps {
   phones: Array<IPerson>;
-  //getPhonesHandler: () => void;
 }
 
 const Book = ({ phones /*getPhonesHandler */ }: BookProps): React.ReactElement => {
+ const dispatch = useDispatch();
+  // @ts-ignore
+    const users = useSelector(state => state.users.users);
+    // @ts-ignore
+  const loading = useSelector(state => state.users.loading);
+    // @ts-ignore
+  const error = useSelector(state => state.users.error);
+
   useEffect(() => {
-    //getPhonesHandler();
-    // eslint-disable-next-line
-  }, []);
+      alert('ola book')
+    dispatch(getUsers());
+  }, [])
 
   return (
     <main className='main'>

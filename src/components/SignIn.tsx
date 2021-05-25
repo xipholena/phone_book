@@ -6,11 +6,12 @@ import {logIn} from "../actions";
 import {loginToStorage} from "../utils";
 import {useForm} from "react-hook-form";
 import {ROUTES} from "../constants";
+import {useSelector} from "react-redux";
 
 let SignIn:FC = (props: any) => {
     const { history, reset} = props;
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const state = store.getState()
+    const state = useSelector(state => state);
     const emailValue = watch("email");
 
     //was props: RouteComponentProps

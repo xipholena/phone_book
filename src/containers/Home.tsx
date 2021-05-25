@@ -5,16 +5,17 @@ import store from "../store";
 //import {LOG_OUT} from "../constants";
 import {logOut} from "../actions";
 import {ROUTES} from "../constants";
+import {useDispatch} from "react-redux";
 
 // RouteComponentProps<MatchParams>
 const Home = () =>  {
+    const dispatch = useDispatch();
+
   const handleLogout = (): void => {
     logoutOfStorage();
-    logOut();
-    //store.dispatch({type: LOG_OUT})
-    //props.dispatch({type: LOG_OUT})
+      dispatch(logOut());
   };
-  const state = store.getState()
+  const state = store.getState();
   return (
       <div>
         <h1>Home</h1>

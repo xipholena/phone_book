@@ -10,6 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger, sagaMiddleware)));
 
 sagaMiddleware.run(rootSaga);
+
 export const sagaAction = type => store.dispatch({type}) //saga
 
 export default store;

@@ -1,5 +1,7 @@
 import { put, takeEvery, all, call } from 'redux-saga/effects'
 import {GET_PHONES} from "./constants";
+import {logIn} from "./actions";
+import {loginToStorage} from "./utils";
 
 
 const URL = 'http://localhost:3000/phones.json';
@@ -28,6 +30,7 @@ function* fetchUsers(action) {
 function* userSaga() {
     yield takeEvery('GET_USERS_REQUESTED', fetchUsers);
 }
+
 
 export default function* rootSaga() {
     yield all([

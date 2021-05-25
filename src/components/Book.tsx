@@ -3,17 +3,17 @@ import { IPerson } from '../containers/App';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector} from "react-redux";
 import {getUsers} from "../actions";
+import {ROUTES} from "../constants";
 
 interface BookProps {
   phones: Array<IPerson>;
 }
 
 
-
 const Book = (): React.ReactElement => {
  const dispatch = useDispatch();
     // @ts-ignore
- const phones = useSelector(state => state.users.users.phones.sort((a, b) => a.name.last.localeCompare(b.name.last)))
+ const phones = useSelector(state => state.users.users.phones?.sort((a, b) => a.name.last.localeCompare(b.name.last)))
   // @ts-ignore
     const users = useSelector(state => state.users.users);
     // @ts-ignore
@@ -24,10 +24,6 @@ const Book = (): React.ReactElement => {
   useEffect(() => {
     dispatch(getUsers());
   }, [])
-
-useEffect(() => {
-    console.log(phones)
-}, [phones])
 
   return (
     <main className='main'>
@@ -54,7 +50,7 @@ useEffect(() => {
             }
           })}
         </ul>
-        <Link to='/home'>Go home</Link>
+        <Link to={{pathname: ROUTES.home}}>Go home</Link>
       </div>
     </main>
   );

@@ -6,7 +6,7 @@ export const initialStateLogUser = {
   isLogged: false,
 };
 
-export const logUser = (state = initialStateLogUser, action) => {
+export const logUser = (state = initialStateLogUser, action: any) => {
   switch (action.type) {
     case LOG_IN:
       return {
@@ -29,13 +29,8 @@ const initialStateFetch = {
   error: null,
 }
 
-export function users(state = initialStateFetch, action) {
+export function users(state = initialStateFetch, action: any) {
   switch (action.type) {
-    case GET_USERS_REQUESTED: //type.GET_USERS_REQUESTED: ???
-      return {
-        ...state,
-        loading: true,
-      }
     case GET_USERS_SUCCESS:
       return {
         ...state,

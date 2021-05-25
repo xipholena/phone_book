@@ -1,24 +1,22 @@
 import React, {FC} from 'react'
-import { Field, reduxForm/*, formValueSelector */} from 'redux-form'
 import store from "../store";
 //import {LOG_IN} from "../constants";
 import {logIn} from "../actions";
 import {loginToStorage} from "../utils";
 import {useForm} from "react-hook-form";
 import {ROUTES} from "../constants";
-import {useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
+import {useHistory} from "react-router-dom"
 
-let SignIn:FC = (props: any) => {
-    const { history, reset} = props;
+export const SignIn:FC = (props: any) => {
+
+    const history = useHistory();
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const state = useSelector(state => state);
     const emailValue = watch("email");
-
+    const dispatch = useDispatch();
     //was props: RouteComponentProps
     const handleLogin = () => {
-       //props.dispatch({ type: LOG_IN })
-       //store.dispatch({ type: LOG_IN })
-        logIn(true);
+        dispatch(logIn());
         loginToStorage(emailValue);
         history.push(ROUTES.main);
     }
@@ -55,8 +53,6 @@ let SignIn:FC = (props: any) => {
     )
 }
 
-export default reduxForm({
-    form: 'fieldLevelValidation', // a unique identifier for this form
-})(SignIn)
+
 
 

@@ -1,5 +1,5 @@
-import { LOG_IN, LOG_OUT, GET_USERS_REQUESTED } from './constants';
-
+import { LOG_IN_REQUEST, LOG_IN_SUCCESS, LOG_IN_FAILED, LOG_OUT, GET_USERS_REQUESTED } from './constants';
+/*
 type LogInType = {
     type: typeof LOG_IN,
     payload: boolean,
@@ -11,10 +11,14 @@ type GetUsersType = {
     type: typeof GET_USERS_REQUESTED,
 }
 type ActionsType = LogInType | LogOutType | GetUsersType;
+*/
 
-export const logIn = (): ActionsType => ({ type: LOG_IN, payload: true }); //dispatched in components
 
-export const logOut = (): ActionsType => ({type: LOG_OUT})
+export const logInRequest = (email = ''): any => ({ type: LOG_IN_REQUEST, payload: email /*no need in it ...?*/}); //called in components, saga listens
+export const logInSuccess = (): any => ({ type: LOG_IN_SUCCESS });
+export const logInFailed = (): any => ({ type: LOG_IN_FAILED});
 
-export const getUsers = (): ActionsType => ({type: GET_USERS_REQUESTED})
+export const logOut = (): any => ({type: LOG_OUT})
+
+export const getUsers = (): any => ({type: GET_USERS_REQUESTED})
 

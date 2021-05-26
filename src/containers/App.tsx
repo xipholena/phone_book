@@ -9,7 +9,7 @@ import {isInStorage} from "../utils";
 import Book from '../components/Book';
 import Home from './Home';
 import {ROUTES} from "../constants";
-import {logIn} from "../actions";
+import {logInRequest} from "../actions";
 interface IName {
   first: string;
   last: string;
@@ -41,7 +41,7 @@ interface ISetPhones {
 const mapStateToProps = (state: any) => ({
     phones: state.users.users.phones,
     isLogged: state.logUser.isLogged,
-    form: state.form
+
 });
 
 
@@ -51,12 +51,10 @@ const App = ({ phones }: { phones: Array<IPerson> }): React.ReactElement => {
 
     useEffect(() => {
         if (isInStorage()) {
-            dispatch(logIn())
+            dispatch(logInRequest()) // saga watcher listens
         }
     }, [dispatch])
 
-
-   // console.log(isInStorage())
   return (
       <>
         <Switch>

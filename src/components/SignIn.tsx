@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from 'react'
 import store from "../store";
 //import {LOG_IN} from "../constants";
-import {logIn} from "../actions";
+import {logInRequest} from "../actions";
 import {loginToStorage} from "../utils";
 import {useForm} from "react-hook-form";
 import {ROUTES} from "../constants";
@@ -16,9 +16,7 @@ export const SignIn:FC = (props: any) => {
     const dispatch = useDispatch();
     //was props: RouteComponentProps
     const handleLogin = () => {
-        dispatch(logIn());
-        loginToStorage(emailValue);
-        history.push(ROUTES.main);
+        dispatch(logInRequest(emailValue)); // saga watcher listens
     }
     return (
         <form onSubmit={handleSubmit(handleLogin)} className="form"> {/* your form submit function which will invoke after successful validation*/}

@@ -52,14 +52,21 @@ code {
   margin: 5px 0;
   border: 2px outset paleturquoise;
   border-radius: 5px;
+  background: repeating-linear-gradient(45deg, paleturquoise, transparent 240px);
+  width: 300px;
 }
+
  .form__field {
   width: 300px;
 }
 
  .main__link {
    text-decoration: none;
+   color: inherit;
+   background-color: #744d44;
+ }
+ .bg {
    color: paleturquoise;
    background-color: #744d44;
-
+   padding: 40px;
  }

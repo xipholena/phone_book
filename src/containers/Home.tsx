@@ -12,8 +12,7 @@ const Home = () =>  {
     const dispatch = useDispatch();
 
   const handleLogout = (): void => {
-    logoutOfStorage();
-    dispatch(logOut());
+    dispatch(logOut()); // saga watcher listens
   };
   const state: any = useSelector(state => state);
   return (

@@ -1,7 +1,7 @@
 const TOKEN_KEY = 'current user';
 
-export const loginToStorage = (email: string): void => {
-  localStorage.setItem(TOKEN_KEY, email);
+export const loginToStorage = (/*/email: string*/): void => {
+  localStorage.setItem(TOKEN_KEY, /*email*/ 'some email');
 };
 
 export const logoutOfStorage = (): void => {

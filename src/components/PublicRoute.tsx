@@ -12,7 +12,9 @@ const PublicRoute = ({ component: Component, restricted, ...rest }: PublicRouteP
   return (
     <Route
       {...rest}
-      render={props => (isInStorage() && restricted ? <Redirect to={{pathname: ROUTES.main}} /> : <Component {...props} />)}
+      render={props => (/*isInStorage() &&*/ restricted
+          ? <Redirect to={{pathname: ROUTES.main}} />
+          : <Component {...props} />)}
     />
   );
 };

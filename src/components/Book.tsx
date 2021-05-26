@@ -28,6 +28,7 @@ const Book = (): React.ReactElement => {
   return (
     <main className='main'>
       <div className='container'>
+          <Link to={{pathname: ROUTES.home}} className='main__link'>Go home</Link>
         <ul>
           {phones?.map(({ id, name, phone }: IPerson, i: number) => {
             if (phones[i - 1]?.name.last.slice(0, 1) !== phones[i]?.name.last.slice(0, 1)) {
@@ -50,7 +51,6 @@ const Book = (): React.ReactElement => {
             }
           })}
         </ul>
-        <Link to={{pathname: ROUTES.home}}>Go home</Link>
       </div>
     </main>
   );

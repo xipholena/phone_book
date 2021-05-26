@@ -5,6 +5,7 @@ import {connect, useSelector} from 'react-redux';
 import PublicRoute from '../components/PublicRoute';
 import PrivateRoute from '../components/PrivateRoute';
 import {SignIn} from '../components/SignIn';
+import {isInStorage} from "../utils";
 import Book from '../components/Book';
 import Home from './Home';
 import {ROUTES} from "../constants";
@@ -46,11 +47,13 @@ const mapStateToProps = (state: any) => ({
 
 const App = ({ phones }: { phones: Array<IPerson> }): React.ReactElement => {
     const state = useSelector(state => state)
+    console.log(isInStorage())
   return (
       <>
         <Switch>
-          <PublicRoute restricted={false} component={Home} path={ROUTES.home} exact />
-          <PublicRoute restricted={true} component={SignIn} path={ROUTES.login} exact />
+            ({isInStorage()
+                ? <PublicRoute restricted={false} component={Home} path={ROUTES.home} exact />
+                : <PublicRoute restricted={true} component={SignIn} path={ROUTES.login} exact />})
           <PrivateRoute component={Book} path={ROUTES.main} exact  />
           <Redirect path={ROUTES.projectName} to={{pathname: ROUTES.login}} />
         </Switch>

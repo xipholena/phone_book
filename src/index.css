@@ -56,3 +56,10 @@ code {
  .form__field {
   width: 300px;
 }
+
+ .main__link {
+   text-decoration: none;
+   color: paleturquoise;
+   background-color: #744d44;
+
+ }

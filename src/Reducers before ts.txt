@@ -1,22 +1,12 @@
 import { combineReducers } from 'redux';
 import { LOG_IN, LOG_OUT, GET_PHONES } from './constants';
 import {GET_USERS_REQUESTED, GET_USERS_SUCCESS, GET_USERS_FAILED} from "./constants";
-import {IPerson} from "./containers/App";
+
 export const initialStateLogUser = {
   isLogged: false,
 };
 
-type LogUserArgsType = {
-  type: typeof LOG_IN | typeof LOG_OUT
-}
-
-type UsersArgsType = {
-  type: typeof GET_USERS_SUCCESS | typeof GET_USERS_FAILED,
-  users?: Array<IPerson>,
-  message: string,
-}
-
-export const logUser = (state = initialStateLogUser, action: LogUserArgsType): any => {
+export const logUser = (state = initialStateLogUser, action: any) => {
   switch (action.type) {
     case LOG_IN:
       return {
@@ -39,7 +29,7 @@ const initialStateFetch = {
   error: null,
 }
 
-export function users(state = initialStateFetch, action: UsersArgsType): any  {
+export function users(state = initialStateFetch, action: any) {
   switch (action.type) {
     case GET_USERS_SUCCESS:
       return {

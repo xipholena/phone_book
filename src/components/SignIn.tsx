@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, useEffect} from 'react'
 import store from "../store";
 //import {LOG_IN} from "../constants";
 import {logIn} from "../actions";
@@ -20,7 +20,6 @@ export const SignIn:FC = (props: any) => {
         loginToStorage(emailValue);
         history.push(ROUTES.main);
     }
-
     return (
         <form onSubmit={handleSubmit(handleLogin)} className="form"> {/* your form submit function which will invoke after successful validation*/}
             {/* register your input into the hook by invoking the "register" function */}

@@ -16,7 +16,15 @@ type UsersArgsType = {
   message: string,
 }
 
-export const logUser = (state = initialStateLogUser, action: LogUserArgsType): any => {
+type LogUserReturnType = {
+  isLogged?: boolean,
+}
+type UsersReturnType = {
+  loading?: boolean ,
+  users?: Array<IPerson>,
+  error?: string | null,
+}
+export const logUser = (state = initialStateLogUser, action: LogUserArgsType): LogUserReturnType => {
   switch (action.type) {
     case LOG_IN:
       return {
@@ -39,7 +47,7 @@ const initialStateFetch = {
   error: null,
 }
 
-export function users(state = initialStateFetch, action: UsersArgsType): any  {
+export function users(state = initialStateFetch, action: UsersArgsType): UsersReturnType {
   switch (action.type) {
     case GET_USERS_SUCCESS:
       return {

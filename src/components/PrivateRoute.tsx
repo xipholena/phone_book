@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import store from "../store";
 import {ROUTES} from '../constants'
@@ -14,7 +14,8 @@ const PrivateRoute = ({
   component: Component,
   ...rest
 }: PrivateRouteProps): React.ReactElement => {
-    const state: any = useSelector(state => state)
+    const state: any = useSelector(state => state);
+
   return (
     <Route
       {...rest}
@@ -27,7 +28,7 @@ const PrivateRoute = ({
       }
     />
   );
-};
+}
 
 export default PrivateRoute;
 

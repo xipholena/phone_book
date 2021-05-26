@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, useEffect} from 'react';
 import { logoutOfStorage,  isInStorage } from '../utils';
 import { Link} from 'react-router-dom';
 import store from "../store";
@@ -13,14 +13,13 @@ const Home = () =>  {
 
   const handleLogout = (): void => {
     logoutOfStorage();
-      dispatch(logOut());
-
+    dispatch(logOut());
   };
   const state: any = useSelector(state => state);
   return (
       <div>
         <h1>Home</h1>
-        {state.logUser.isLogged /*|| isInStorage() */ ? (
+        {state.logUser.isLogged ? (
             <button onClick={() => handleLogout()}>Click here to log out</button>
         ) : (
             <Link to={{pathname: ROUTES.login}}>Go to sign in page</Link>

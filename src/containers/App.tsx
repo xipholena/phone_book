@@ -8,8 +8,8 @@ import { SignIn } from '../components/SignIn';
 import { isInStorage } from '../utils';
 import Book from '../components/Book';
 import Home from './Home';
-import { ROUTES } from '../constants';
-import { logInRequest } from '../actions';
+import { ROUTES } from '../redux/constants';
+import { logInRequest } from '../redux/actions';
 interface IName {
   first: string;
   last: string;
@@ -26,17 +26,7 @@ export interface IPerson {
   address?: string;
   registered: string;
 }
-interface GlobalState {
-  logUser: ILogUser;
-  setPhones: ISetPhones;
-  counter: number;
-}
-interface ILogUser {
-  isLogged: boolean;
-}
-interface ISetPhones {
-  phones: Array<IPerson>;
-}
+
 
 const mapStateToProps = (state: any) => ({
   phones: state.users.users.phones,
@@ -44,7 +34,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const App = ({ phones }: { phones: Array<IPerson> }): React.ReactElement => {
-  const state = useSelector(state => state);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

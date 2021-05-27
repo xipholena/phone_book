@@ -1,27 +1,20 @@
 import { put, takeEvery, all, call, delay } from 'redux-saga/effects';
 import {
-  GET_PHONES,
-  GET_USERS_FAILED,
   GET_USERS_REQUESTED,
-  GET_USERS_SUCCESS,
   LOG_IN_REQUEST,
-  LOG_IN_SUCCESS,
-  LOG_IN_FAILED,
   LOG_OUT,
-  ROUTES,
 } from './constants';
-import { logInRequest, logInSuccess, logInFailed, logOut } from './actions';
-import { loginToStorage, logoutOfStorage } from './utils';
+import {logInSuccess, logInFailed, logOut, getUsersSuccess, getUsersFailed } from './actions';
+import { loginToStorage, logoutOfStorage } from '../utils';
 import {} from './constants';
-import { IPerson } from './containers/App';
-import store from './store';
+import { IPerson } from '../containers/App';
 
 type FetchUserParams = {
   type: string;
   users?: Array<IPerson>;
   message?: string;
 };
-//const state = store.getState();
+
 const URL = 'http://localhost:3000/phones.json';
 const getPhones = () => {
   return fetch(URL, {
@@ -42,9 +35,9 @@ function* fetchUsers(action: FetchUserParams): any {
   try {
     yield delay(1000);
     const users = yield call(getPhones);
-    yield put({ type: GET_USERS_SUCCESS, users: users }); //put === dispatch(action.type, payload)
+    yield put(getUsersSuccess(users)); //put === dispatch(action.type, payload)
   } catch (e) {
-    yield put({ type: GET_USERS_FAILED, error: e.message });
+    yield put(getUsersFailed(e));
   }
 }
 
@@ -52,9 +45,9 @@ function* logInSaga(action: any): any {
   try {
     yield delay(1000);
     loginToStorage();
-    yield put({ type: LOG_IN_SUCCESS });
+    yield put(logInSuccess());
   } catch (e) {
-    yield put({ type: LOG_IN_FAILED, message: e.message });
+    yield put(logInFailed(e));
   }
 }
 function* logOutSaga(action: any): any {

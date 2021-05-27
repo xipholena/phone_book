@@ -1,15 +1,9 @@
-import React, { FC, useEffect } from 'react';
-import store from '../store';
-//import {LOG_IN} from "../constants";
-import { logInRequest } from '../actions';
-import { loginToStorage } from '../utils';
+import React, { FC} from 'react';
+import { logInRequest } from '../redux/actions';
 import { useForm } from 'react-hook-form';
-import { ROUTES } from '../constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { RootState } from '../reducers';
-export const SignIn: FC = (props: any) => {
-  const history = useHistory();
+import { RootState } from '../redux/reducers';
+export const SignIn: FC = (): React.ReactElement => {
   const {
     register,
     handleSubmit,
@@ -22,6 +16,7 @@ export const SignIn: FC = (props: any) => {
   const handleLogin = () => {
     dispatch(logInRequest(emailValue)); // saga watcher listens
   };
+
   return (
     <>
       <form onSubmit={handleSubmit(handleLogin)} className='form'>

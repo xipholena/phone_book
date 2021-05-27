@@ -2,25 +2,19 @@ import React, { useEffect, FC } from 'react';
 import { IPerson } from '../containers/App';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from '../actions';
-import { ROUTES } from '../constants';
-import { RootState } from '../reducers';
-
-interface BookProps {
-  phones: Array<IPerson>;
-}
+import { getUsers } from '../redux/actions';
+import { ROUTES } from '../redux/constants';
+import { RootState } from '../redux/reducers';
 
 const Book: FC = (): React.ReactElement => {
   const dispatch = useDispatch();
   const phones = useSelector((state: RootState | any) =>
     state.users.users.phones?.sort((a: any, b: any) => a.name.last.localeCompare(b.name.last))
   );
-  const users = useSelector((state: RootState | any) => state.users.users);
   const loading = useSelector((state: RootState | any) => state.users.loading);
-  const error = useSelector((state: RootState | any) => state.users.error);
-
   useEffect(() => {
     dispatch(getUsers());
+    // eslint-disable-next-line
   }, []);
 
   return (

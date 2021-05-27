@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { isInStorage } from '../utils';
-import { ROUTES } from '../constants';
+import { ROUTES } from '../redux/constants';
 import { useSelector } from 'react-redux';
 type PublicRouteProps = {
   component: any;

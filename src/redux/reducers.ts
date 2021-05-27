@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import {
-  GET_PHONES,
   LOG_IN_REQUEST,
   LOG_IN_FAILED,
   LOG_IN_SUCCESS,
@@ -9,7 +8,7 @@ import {
   GET_USERS_SUCCESS,
   GET_USERS_FAILED,
 } from './constants';
-import { IPerson } from './containers/App';
+import { IPerson } from '../containers/App';
 export const initialStateLogUser = {
   isLogged: false,
   isLoading: false,
@@ -17,7 +16,7 @@ export const initialStateLogUser = {
   error: null,
 };
 
-type LogUserArgsType = {
+export type LogUserArgsType = {
   type: typeof LOG_IN_REQUEST | typeof LOG_IN_SUCCESS | typeof LOG_IN_FAILED | typeof LOG_OUT;
   error: null | string;
   message: string;
@@ -65,10 +64,11 @@ const initialStateFetch = {
   loading: false,
   error: null,
 };
-type UsersArgsType = {
+
+export type UsersArgsType = {
   type: typeof GET_USERS_SUCCESS | typeof GET_USERS_FAILED | typeof GET_USERS_REQUESTED;
   users?: Array<IPerson>;
-  message: string;
+  message?: string;
 };
 
 type UsersReturnType = {

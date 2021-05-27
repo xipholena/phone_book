@@ -1,14 +1,12 @@
-import React, { Component, useEffect } from 'react';
-import { logoutOfStorage, isInStorage } from '../utils';
+import React, {FC} from 'react';
+
 import { Link } from 'react-router-dom';
-import store from '../store';
-//import {LOG_OUT} from "../constants";
-import { logOut } from '../actions';
-import { ROUTES } from '../constants';
+
+import { logOut } from '../redux/actions';
+import { ROUTES } from '../redux/constants';
 import { useDispatch, useSelector } from 'react-redux';
 
-// RouteComponentProps<MatchParams>
-const Home = () => {
+const Home: FC = () => {
   const dispatch = useDispatch();
 
   const handleLogout = (): void => {

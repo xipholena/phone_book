@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import store from '../store';
-import { ROUTES } from '../constants';
+import { ROUTES } from '../redux/constants';
 import { useSelector } from 'react-redux';
 
 type PrivateRouteProps = {

@@ -57,7 +57,7 @@ const initialStateFetch = {
   error: null,
 }
 type UsersArgsType = {
-  type: typeof GET_USERS_SUCCESS | typeof GET_USERS_FAILED,
+  type: typeof GET_USERS_SUCCESS | typeof GET_USERS_FAILED | typeof GET_USERS_REQUESTED,
   users?: Array<IPerson>,
   message: string,
 }
@@ -70,6 +70,11 @@ type UsersReturnType = {
 
 export function users(state = initialStateFetch, action: UsersArgsType): UsersReturnType {
   switch (action.type) {
+    case GET_USERS_REQUESTED:
+      return {
+        ...state,
+        loading: true,
+      }
     case GET_USERS_SUCCESS:
       return {
         ...state,
@@ -91,3 +96,5 @@ export const rootReducer = combineReducers({
   logUser,
   users,
 });
+
+export type RootState = ReturnType<typeof rootReducer>

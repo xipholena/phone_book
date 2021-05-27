@@ -37,6 +37,7 @@ const URL = 'http://localhost:3000/phones.json';
 
 function* fetchUsers(action: FetchUserParams): any {//Since a generator function can technically return a dynamic value depending on how next() is called, Redux-Saga had decided it best to use type any rather than try to infer a type.
     try {
+        yield delay(1000)
         const users = yield call(getPhones);
         yield put({type: GET_USERS_SUCCESS, users: users}); //put === dispatch(action.type, payload)
     } catch (e) {
@@ -47,7 +48,7 @@ function* fetchUsers(action: FetchUserParams): any {//Since a generator function
 function* logInSaga(action: any):any {
     try {
         yield delay(1000);
-        loginToStorage(/*state.logUser.email*/)
+        loginToStorage()
         yield put({type: LOG_IN_SUCCESS});
     } catch (e) {
         yield put({type: LOG_IN_FAILED, message: e.message});
@@ -65,7 +66,7 @@ function* handleLogInOut(): any {   //watcher
 
 function* userSaga(): any { //watcher
     yield takeEvery(GET_USERS_REQUESTED, fetchUsers); //listens to action with action.type GET_USERS_REQUESTED,  and when it is called calls function  fetchUsers
-}
+}                                                   //action is still being dispatched
 
 export default function* rootSaga(): any {
     yield all([

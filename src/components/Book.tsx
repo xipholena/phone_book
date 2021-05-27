@@ -1,21 +1,23 @@
 import React, { useEffect, FC } from 'react';
 import { IPerson } from '../containers/App';
-import { Link } from 'react-router-dom';
+import { Link, Route, useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../redux/actions';
 import { ROUTES } from '../redux/constants';
-import { RootState } from '../redux/reducers';
+import { RootState } from '../redux/rootReducer';
+import User from './User';
 
 const Book: FC = (): React.ReactElement => {
   const dispatch = useDispatch();
   const phones = useSelector((state: RootState | any) =>
-    state.users.users.phones?.sort((a: any, b: any) => a.name.last.localeCompare(b.name.last))
+    state.users.users?.sort((a: any, b: any) => a.name.last.localeCompare(b.name.last))
   );
   const loading = useSelector((state: RootState | any) => state.users.loading);
   useEffect(() => {
     dispatch(getUsers());
     // eslint-disable-next-line
   }, []);
+
 
   return (
     <main className='main'>
@@ -38,7 +40,10 @@ const Book: FC = (): React.ReactElement => {
                     <p>{phones[i].name.last.slice(0, 1)} </p>
                     <ul className='firstInRow'>
                       <li>
-                        {name.last} {name.first}, phone: {phone}
+
+                        <Link /*Route*/ to={`/${id}`}/* component={User}*/>
+                          {name.last} {name.first}
+                        </Link>
                       </li>
                     </ul>
                   </li>
@@ -46,7 +51,9 @@ const Book: FC = (): React.ReactElement => {
               } else {
                 return (
                   <li key={id}>
-                    {name.last} {name.first}, phone: {phone}
+                    <Link /*Route*/ to={`/${id}`} /*component={User}*/>
+                    {name.last} {name.first}
+                    </Link>
                   </li>
                 );
               }

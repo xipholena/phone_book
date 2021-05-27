@@ -94,3 +94,7 @@ code {
  .dialog__msg {
    color: paleturquoise;
  }
+ .person__info-title {
+   font-style: italic;
+   margin-right: 10px;
+ }

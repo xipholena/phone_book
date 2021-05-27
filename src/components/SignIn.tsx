@@ -2,7 +2,7 @@ import React, { FC} from 'react';
 import { logInRequest } from '../redux/actions';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/reducers';
+import { RootState } from '../redux/rootReducer';
 export const SignIn: FC = (): React.ReactElement => {
   const {
     register,

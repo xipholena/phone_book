@@ -24,7 +24,7 @@ const getPhones = () => {
     },
   })
     .then(response => response.json())
-    .then(data => data)
+    .then(data => data.phones)
     .catch(e => {
       console.log(e.toString());
     });

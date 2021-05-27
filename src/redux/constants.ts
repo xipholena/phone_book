@@ -10,6 +10,9 @@ export const ROUTES = {
   home: '/home',
   login: '/login',
   projectName: '/phone_book', // webstorm adds it
+  dynamic: {
+    phone: (personId = ':personId') => `/${personId}`,
+  }
 };
 
 export const GET_USERS_REQUESTED = 'GET_USERS_REQUESTED';

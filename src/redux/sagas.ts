@@ -74,6 +74,3 @@ export default function* rootSaga(): any {
     handleLogInOut(),
   ]);
 }
-
-
-

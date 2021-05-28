@@ -12,13 +12,13 @@ const EditForm = (): React.ReactElement => {
             Edit profile
           </p>
 
-          <Input
+          <input
             type="text"
             placeholder="First name"
             formClass="edit"
           />
 
-          <Input
+          <input
             type="text"
             placeholder="Last name"
             formClass="edit"
@@ -32,37 +32,37 @@ const EditForm = (): React.ReactElement => {
             </select>
           </label>
 
-          <Input
+          <input
             type="number"
             placeholder="Age"
             formClass="edit"
           />
 
-          <Input
+          <input
             type="text"
             placeholder="Company"
             formClass="edit"
           />
 
-          <Input
+          <input
             type="text"
             placeholder="Email"
             formClass="edit"
           />
 
-          <Input
+          <input
             type="text"
             placeholder="Phone"
             formClass="edit"
           />
 
-          <Input
+          <input
             type="text"
             placeholder="Address"
             formClass="edit"
           />
 
-          <Input
+          <input
             type="text"
             placeholder="Registered"
             formClass="edit"

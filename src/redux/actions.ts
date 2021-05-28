@@ -6,7 +6,6 @@ import {
   GET_USERS_REQUESTED, GET_USERS_SUCCESS, GET_USERS_FAILED,
   SEND_USER_REQUESTED, SEND_USER_SUCCESS, SEND_USER_FAILED,
   UPDATE_USER_REQUESTED, UPDATE_USER_SUCCESS, UPDATE_USER_FAILED,
-  SHOW_FORM_ERRORS,
 } from "./constants";
 import { IPerson } from "../containers/App";
 
@@ -55,5 +54,3 @@ export const sendUsersFailed = (e: any): any => ({ type: SEND_USER_FAILED, messa
 export const updateUser = (): any => ({ type: UPDATE_USER_REQUESTED });
 export const updateUsersSuccess = (): any => ({ type: UPDATE_USER_SUCCESS });
 export const updateUsersFailed = (e: any): any => ({ type: UPDATE_USER_FAILED, message: e.message });
-
-export const showFormErrors = (errors: object): any => ({type: SHOW_FORM_ERRORS, errors: errors});

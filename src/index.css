@@ -10,6 +10,25 @@ body {
   box-sizing: border-box;
 }
 
+/* reset */
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+li {
+    list-style-type: none;
+}
+/*normalize*/
+a, button {
+    display: inline-block;
+    font-size: inherit;
+    text-align: center;
+}
+
+button {
+    font-family: inherit;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -41,11 +60,18 @@ code {
   padding: 30px;
   background-color: #744d44;
 }
-.form__field {
+.form__field,
+.add-form__field,
+.edit-form__field{
+    display: block;
   padding: 7px 15px;
   margin: 5px 0;
   border: 2px inset paleturquoise;
   border-radius: 5px;
+}
+.add-form__field,
+.edit-form__field {
+    width: 100%;
 }
 .form__button {
   padding: 7px 15px;
@@ -98,3 +124,22 @@ code {
    font-style: italic;
    margin-right: 10px;
  }
+.add-form__field {
+    display: block;
+}
+.add-form,
+.edit-form {
+    width: 240px;
+    padding: 20px;
+    background: repeating-linear-gradient(45deg, #744d44, transparent 500px);
+}
+
+.name {
+    transition: color 0.3s
+}
+.name:visited {
+    color: purple;
+}
+.name:hover {
+    color: turquoise;
+}

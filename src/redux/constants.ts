@@ -9,12 +9,22 @@ export const ROUTES = {
   main: '/',
   home: '/home',
   login: '/login',
+  add: '/add',
   projectName: '/phone_book', // webstorm adds it
   dynamic: {
     phone: (personId = ':personId') => `/${personId}`,
+    edit: (id = ':id') => `/edit/${id}`
   }
 };
 
 export const GET_USERS_REQUESTED = 'GET_USERS_REQUESTED';
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 export const GET_USERS_FAILED = 'GET_USERS_FAILED';
+
+export const SEND_USER_REQUESTED = 'SEND_USER_REQUESTED';
+export const SEND_USER_SUCCESS = 'SEND_USER_SUCCESS';
+export const SEND_USER_FAILED = 'SEND_USER_FAILED';
+
+export const UPDATE_USER_REQUESTED = 'UPDATE_USER_REQUESTED';
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+export const UPDATE_USER_FAILED = 'UPDATE_USER_FAILED';

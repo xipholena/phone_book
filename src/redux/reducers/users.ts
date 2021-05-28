@@ -23,7 +23,7 @@ type UsersReturnType = {
   error?: string | null;
 };
 
-export const  users: Reducer<typeof initialStateFetch, UsersArgsType> = (state = initialStateFetch, action: UsersArgsType) => {
+export const  users: Reducer<UsersReturnType, UsersArgsType> = (state = initialStateFetch, action): UsersReturnType => {
   switch (action.type) {
     case GET_USERS_REQUESTED:
       return {

@@ -30,6 +30,8 @@ const getPhones = () => {
     });
 };
 
+
+
 function* fetchUsers(action: FetchUserParams): any {
   //Since a generator function can technically return a dynamic value depending on how next() is called, Redux-Saga had decided it best to use type any rather than try to infer a type.
   try {
@@ -71,4 +73,56 @@ export default function* rootSaga(): any {
     userSaga(), //fetch
     handleLogInOut(),
   ]);
+}
+
+const info = {
+  id: "6002f201e78c3fa4e3390f93",
+  isActive: true,
+  age: 23,
+  name: {
+    first: "Sutton",
+    last: "Morris"
+  },
+  company: "ZILPHUR",
+  email: "sutton.morris@zilphur.me",
+  phone: "+1 (974) 540-2046",
+  address: "374 Mill Lane, Zarephath, New Mexico, 3252",
+  registered: "2016-03-10T06:10:01.723Z"
+};
+const URL_POST = 'https://jsonplaceholder.typicode.com/posts';
+export const send = () => {
+  return fetch(URL_POST, { //'https://jsonplaceholder.typicode.com/posts'
+    method: 'POST',
+    body: JSON.stringify(info),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+}
+
+const info2 = {title: 'foo'}
+const URL_PATCH = 'https://jsonplaceholder.typicode.com/posts/1';
+export const update = () => {
+  fetch(URL_PATCH, {
+    method: 'PATCH',
+    body: JSON.stringify(info2),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+}
+
+const URL_DELETE = 'https://jsonplaceholder.typicode.com/posts/1'
+export const deleteUser = () => {
+  fetch(URL_DELETE, {
+    method: 'DELETE',
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
 }

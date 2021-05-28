@@ -25,7 +25,7 @@ type LogUserReturnType = {
   error?: null | string;
 };
 
-export const logUser: Reducer<typeof initialStateLogUser, LogUserArgsType> = (state = initialStateLogUser, action: LogUserArgsType) => {
+export const logUser: Reducer<LogUserReturnType, LogUserArgsType> = (state = initialStateLogUser, action):LogUserReturnType => {
   switch (action.type) {
     case LOG_IN_REQUEST:
       return {

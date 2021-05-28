@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/rootReducer";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const User: FC = () => {
   const { personId } = useParams<{personId: string}>();
@@ -12,7 +12,9 @@ const User: FC = () => {
     ? (
     <>
       <div className="container">
-
+        <Link to={`edit/${person.id}`}>
+          Edit user
+        </Link>
         <div className="person">
           <h1>{person.name.first} {person.name.last}</h1>
           <p>

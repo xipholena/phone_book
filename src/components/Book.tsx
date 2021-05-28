@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../redux/actions';
 import { ROUTES } from '../redux/constants';
 import { RootState } from '../redux/rootReducer';
-import User from './User';
+import { deleteUser, send, update,  } from "../redux/sagas";
 
 const Book: FC = (): React.ReactElement => {
   const dispatch = useDispatch();
@@ -29,6 +29,36 @@ const Book: FC = (): React.ReactElement => {
         </div>
       </div>
       <div className='container'>
+
+        <button
+          type="button"
+          onClick={send}
+          className="form__button"
+        >
+          Send contacts
+        </button>
+
+        <button
+          type="button"
+          onClick={update}
+          className="form__button"
+        >
+          Update contacts
+        </button>
+
+        <button
+          type="button"
+          onClick={deleteUser}
+          className="form__button"
+        >
+          Delete user
+        </button>
+
+        <Link to={ROUTES.add} className="form__button">
+          Add user
+        </Link>
+
+
         {loading ? (
           <p>Wait for it...</p>
         ) : (
@@ -39,9 +69,8 @@ const Book: FC = (): React.ReactElement => {
                   <li key={id} className='withSeparator'>
                     <p>{phones[i].name.last.slice(0, 1)} </p>
                     <ul className='firstInRow'>
-                      <li>
-
-                        <Link /*Route*/ to={`/${id}`}/* component={User}*/>
+                      <li className='name'>
+                        <Link to={`/${id}`}>
                           {name.last} {name.first}
                         </Link>
                       </li>
@@ -50,8 +79,8 @@ const Book: FC = (): React.ReactElement => {
                 );
               } else {
                 return (
-                  <li key={id}>
-                    <Link /*Route*/ to={`/${id}`} /*component={User}*/>
+                  <li key={id} className='name'>
+                    <Link to={`/${id}`}>
                     {name.last} {name.first}
                     </Link>
                   </li>

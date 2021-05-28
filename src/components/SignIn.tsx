@@ -13,7 +13,7 @@ export const SignIn: FC = (): React.ReactElement => {
   const emailValue = watch('email');
   const dispatch = useDispatch();
   const isLoading = useSelector((state: RootState | any) => state.logUser.isLoading);
-  const handleLogin = () => {
+  const handleLogin = ():void => {
     dispatch(logInRequest(emailValue)); // saga watcher listens
   };
 
@@ -32,6 +32,7 @@ export const SignIn: FC = (): React.ReactElement => {
             },
           })}
           className='form__field'
+          placeholder="email"
         />
         {/* errors will return when field validation fails  */}
         {errors.email && <span>{errors.email?.message}</span>}{' '}
@@ -48,6 +49,8 @@ export const SignIn: FC = (): React.ReactElement => {
             },
           })}
           className='form__field'
+          type="password"
+          placeholder="password"
         />
         {errors.password && <span>{errors.password?.message}</span>}
         <input type='submit' className='form__button' />

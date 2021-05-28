@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 type PrivateRouteProps = {
   component: any;
   path: string;
-  exact: boolean;
+  exact?: boolean;
 };
 
 const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteProps): React.ReactElement => {

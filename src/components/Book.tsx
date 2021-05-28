@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../redux/actions';
 import { ROUTES } from '../redux/constants';
 import { RootState } from '../redux/rootReducer';
-import { deleteUser, send, update,  } from "../redux/sagas";
 
 const Book: FC = (): React.ReactElement => {
   const dispatch = useDispatch();
@@ -32,7 +31,6 @@ const Book: FC = (): React.ReactElement => {
 
         <button
           type="button"
-          onClick={send}
           className="form__button"
         >
           Send contacts
@@ -40,7 +38,6 @@ const Book: FC = (): React.ReactElement => {
 
         <button
           type="button"
-          onClick={update}
           className="form__button"
         >
           Update contacts
@@ -48,7 +45,6 @@ const Book: FC = (): React.ReactElement => {
 
         <button
           type="button"
-          onClick={deleteUser}
           className="form__button"
         >
           Delete user

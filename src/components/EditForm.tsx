@@ -1,5 +1,5 @@
-import React from "react";
-import Input from "./Input";
+/*import React from "react";
+//import Input from "./Input";
 
 const EditForm = (): React.ReactElement => {
 
@@ -8,7 +8,7 @@ const EditForm = (): React.ReactElement => {
       <div className="container">
 
         <form method="patch" className="edit-form">
-          <p className ="edit-form__title">
+          <p className="edit-form__title">
             Edit profile
           </p>
 
@@ -73,3 +73,7 @@ const EditForm = (): React.ReactElement => {
   )
 }
 export default EditForm;
+
+*/
+
+export {};

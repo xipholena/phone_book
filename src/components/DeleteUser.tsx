@@ -8,8 +8,7 @@ import {deleteUsersSuccess} from '../redux/actions'
 const DeleteUser= (): React.ReactElement => {
   const dispatch = useDispatch();
   const state = store.getState();
-  const currentUsers = state.users.users;
-  console.log('DeleteUser',currentUsers);
+  console.log('DeleteUser',state.users.users);
   const location = useLocation();
   const params = useParams();
   //@ts-ignore
@@ -18,7 +17,8 @@ const DeleteUser= (): React.ReactElement => {
 useEffect(() => {
   //@ts-ignore
   console.log(params.id.slice(1));
-  dispatch(deleteUsersSuccess(id, currentUsers))
+ // dispatch(deleteUsersSuccess(id, currentUsers))
+ dispatch(deleteUsersSuccess(id))
 }, [])
 //@ts-ignore
 //const deleteHandler: React.MouseEvent<HTMLButtonElement> = (id): void => {

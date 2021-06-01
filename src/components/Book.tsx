@@ -69,27 +69,6 @@ const Book: FC = (): React.ReactElement => {
       </div>
       <div className='container'>
 
-        <button
-          type="button"
-          className="form__button"
-        >
-          Send contacts
-        </button>
-
-        <button
-          type="button"
-          className="form__button"
-        >
-          Update contacts
-        </button>
-
-        <button
-          type="button"
-          className="form__button"
-        >
-          Delete user
-        </button>
-
         <Link to={ROUTES.add} className="form__button">
           Add user
         </Link>
@@ -113,17 +92,21 @@ const Book: FC = (): React.ReactElement => {
                          {/*@ts-ignore */}
                       </li> 
                       <Link to={`/edit/:${id}`} className="form__button">Edit user </Link>
-                      <Link to={`/delete/:${id}`} className="form__button">delete user </Link>
+                      <Link to={`/delete/:${id}`} className="form__button">Delete user </Link>
                     </ul>
                   </li>
                 );
               } else {
                 return (
+                  <>
                   <li key={id} className='name'>
                     <Link to={`/${id}`}>
                     {name.last} {name.first} 
                     </Link>
                   </li>
+                   <Link to={`/edit/:${id}`} className="form__button">Edit user </Link>
+                   <Link to={`/delete/:${id}`} className="form__button">Delete user </Link>
+                </>
                 );
               }
             })}

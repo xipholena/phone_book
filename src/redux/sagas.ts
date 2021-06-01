@@ -3,11 +3,13 @@ import {
   GET_USERS_REQUESTED,
   LOG_IN_REQUEST,
   LOG_OUT,
-  DELETE_USER_REQUESTED
+  DELETE_USER_REQUESTED,
+  SEND_USER_REQUESTED,
 } from './constants';
 import {logInSuccess, logInFailed, logOut,
    getUsersSuccess, getUsersFailed,
    deleteUsersSuccess, 
+   sendUserSuccess
   } from './actions';
 import { loginToStorage, logoutOfStorage } from '../utils';
 import {} from './constants';
@@ -76,19 +78,30 @@ function* userSaga(): any {
 
 function* deleteUser (action: any): any {
   try {
-    yield put(deleteUsersSuccess(action.id, action.currentUsers))
-  } catch {
+    yield put(deleteUsersSuccess(action.id))
+  } catch (e) {
     
-  }
-   
+  } 
 }
-function* deleteUserSaga(): any {
+
+function* addUser (action: any): any {
+  try {
+    yield put(sendUserSuccess(action.newUser))
+  } catch (e) {
+    
+  } 
+}
+
+function* manageUserSaga(): any {
   //watcher
   yield takeEvery(DELETE_USER_REQUESTED, deleteUser)
+  yield takeEvery(SEND_USER_REQUESTED, addUser)
 }
+
 export default function* rootSaga(): any {
   yield all([
     userSaga(), //fetch
     handleLogInOut(),
+    manageUserSaga(),
   ]);
 }

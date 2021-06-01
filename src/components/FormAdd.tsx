@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import {sendUserSuccess} from '../redux/actions'
 
 function FormAdd() {
-
   const {
     register,
     handleSubmit,
@@ -13,15 +12,54 @@ function FormAdd() {
     formState: { errors },
   } = useForm();
 
-  const emailValue = watch('email');
+  const dispatch = useDispatch();
 
-  const handleLogin = ():void => {
+  const firstNameValue = watch('firstName');
+  const lastNameValue = watch('lastName');
+  const statusValue = watch('status');
+  const ageValue = watch('age');
+  const companyValue = watch('company');
+  const emailValue = watch('email');
+  const phoneValue = watch('phone');
+  const addressValue = watch('address');
+  const registeredValue = watch('registered');
+
+
+  const handleAdd = ():void => {
     alert('ola add')
+    console.log(
+      firstNameValue,
+      lastNameValue,
+      'status:', statusValue,
+      ageValue,
+      companyValue,
+      emailValue,
+      phoneValue,
+      addressValue,
+      registeredValue,
+  )
+  
+  const newUser = {
+      "id": new Date().toString(),
+      "isActive": statusValue === 'active' ? true : false,
+      "age": ageValue,
+      "name": {
+        "first": firstNameValue,
+        "last": lastNameValue,
+      },
+      "company": companyValue,
+      "email": emailValue,
+      "phone": phoneValue,
+      "address": addressValue,
+      "registered": registeredValue,
+  }
+  console.log(newUser)
+  dispatch(sendUserSuccess(newUser))
   };
   return (
     <>
       <div className="container">
-        <form className="add-form" onSubmit={handleSubmit(handleLogin)}>
+        <form className="add-form" onSubmit={handleSubmit(handleAdd)}>
 
           <input
             type="text"
@@ -41,12 +79,11 @@ function FormAdd() {
 
             <select
               className="add-form__field"
-              {...register('status', {})}
+              {...register('status')}
             >
-              <option value="">active</option>
-              <option value="">not active</option>
+              <option value="active">active</option>
+              <option value="not active">not active</option>
             </select>
-
 
           <input
             type="number"
@@ -61,7 +98,6 @@ function FormAdd() {
             })}
           />
           {errors.age?.message && <span>{errors.age?.message}</span>}
-
 
           <input
             type="text"
@@ -126,20 +162,4 @@ function FormAdd() {
   );
 }
 export default FormAdd;
-/*
-validate: {
-  required: (value: any) => value.length || 'This field is required',
-    isCorrect: (value: any) => +value >= 1 && +value <= 120|| 'Your age must be 1 to 120 years',
-}
 
-validate: {
-  required: (value: any) => value.length || 'This field is required',
-    isCorrect: (value: any) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) || 'Invalid email address',
-}
-
-validate: {
-  required: (value: any) => value.length || 'This field is required',
-  isCorrectLength: (value: any) => value.match(/[0-9]/g).join('').length !== 11 || 'Phone number must contain 11 digits',
-  startsCorrectly: (value: any) => value.slice(0,1) === '1' || value.slice(1,2) === '1' || 'Phone number must start with 1',
-}
- */

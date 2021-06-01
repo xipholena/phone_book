@@ -49,16 +49,21 @@ export const getUsersSuccess = (users: Array<IPerson>): ActionsType => ({ type: 
 export const getUsersFailed = (e: any): ActionsType => ({ type: GET_USERS_FAILED, message: e.message });
 
 export const sendUser = (): any => ({ type: SEND_USER_REQUESTED });
-export const sendUsersSuccess = (): any => ({ type: SEND_USER_SUCCESS });
-export const sendUsersFailed = (e: any): any => ({ type: SEND_USER_FAILED, message: e.message });
+export const sendUserSuccess = (newUser: IPerson): any => {
+  console.log('actions, sendUserSuccess, parameter: ', newUser )
+  return({ type: SEND_USER_SUCCESS, newUser: newUser });
+}
+
+
+export const sendUserFailed = (e: any): any => ({ type: SEND_USER_FAILED, message: e.message });
 
 export const updateUser = (): any => ({ type: UPDATE_USER_REQUESTED });
 export const updateUsersSuccess = (): any => ({ type: UPDATE_USER_SUCCESS });
 export const updateUsersFailed = (e: any): any => ({ type: UPDATE_USER_FAILED, message: e.message });
 
 export const deleteUser = (): any => ({ type: DELETE_USER_REQUESTED });
-export const deleteUsersSuccess = (id: any, currentUsers: any): any => {
+export const deleteUsersSuccess = (id: any): any => {
   console.log('actions, deleteUsersSuccess, parameter: ', id )
-  return { type: DELETE_USER_SUCCESS, userId: id, currentUsers: currentUsers }
+  return { type: DELETE_USER_SUCCESS, userId: id }
 };
 export const deleteUsersFailed = (e: any): any => ({ type: DELETE_USER_FAILED, message: e.message });

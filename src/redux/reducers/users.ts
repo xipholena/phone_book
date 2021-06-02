@@ -61,7 +61,7 @@ export const  users: Reducer<UsersReturnType, UsersArgsType> = (state = initialS
         users: state.users?.filter((user: any) => user.id !== action.userId)
       }
     case SEND_USER_REQUESTED:
-      //console.log('reducer, action.newUser',action.newUser);
+      console.log('reducer, action.newUser',action.newUser);
       return {
         ...state,
         users: [

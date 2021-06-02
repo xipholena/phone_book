@@ -25,7 +25,8 @@ type LogOutType = {
 }
 
 type GetUsersType = {
-    type: typeof GET_USERS_REQUESTED,
+  type: typeof GET_USERS_REQUESTED,
+  currentUsers?: Array<IPerson>,
 }
 type GetUsersSuccessType = {
   type: typeof GET_USERS_SUCCESS,
@@ -44,31 +45,37 @@ export const logInSuccess = (): ActionsType => ({ type: LOG_IN_SUCCESS});
 export const logInFailed = (e: any): ActionsType => ({ type: LOG_IN_FAILED, message: e.message });
 export const logOut = (): ActionsType => ({ type: LOG_OUT });
 
-export const getUsers = (): ActionsType => {
+export const getUsers = (/*currentUsers: any*/): ActionsType => {
   console.log ('getting users!');
-  return ({ type: GET_USERS_REQUESTED });
+  return ({ type: GET_USERS_REQUESTED, /*currentUsers: currentUsers */} );
 }
 
 export const getUsersSuccess = (users: Array<IPerson>): ActionsType => ({ type: GET_USERS_SUCCESS, users: users });
 export const getUsersFailed = (e: any): ActionsType => ({ type: GET_USERS_FAILED, message: e.message });
 
 export const sendUserRequest = (newUser: any): any => {
-  //console.log('actions, sendUserRequest, newUser:', newUser)
+  console.log('actions, sendUserRequest, newUser:', newUser)
   return ({type: SEND_USER_REQUESTED, newUser: newUser})
 };
 export const sendUserSuccess = (newUser: IPerson): any => {
-  //console.log('actions, sendUserSuccess, parameter: ', newUser )
+  console.log('actions, sendUserSuccess, parameter: ', 'newUser: ' ,newUser )
   return({ type: SEND_USER_SUCCESS, newUser: newUser });
 }
 export const sendUserFailed = (e: any): any => ({ type: SEND_USER_FAILED, message: e.message });
 
-export const updateUser = (): any => ({ type: UPDATE_USER_REQUESTED });
+export const updateUser = (id:any, updatedUser: any): any => {
+  console.log('actions updateUser, parameter:', id);
+  return ({ type: UPDATE_USER_REQUESTED, userId: id, updatedUser: updatedUser });
+}
 export const updateUsersSuccess = (): any => ({ type: UPDATE_USER_SUCCESS });
 export const updateUsersFailed = (e: any): any => ({ type: UPDATE_USER_FAILED, message: e.message });
 
-export const deleteUser = (id:any): any => ({ type: DELETE_USER_REQUESTED, userId: id });
+export const deleteUser = (id:any): any => {
+  console.log('actions deleteUser, parameter:', id);
+  return ({ type: DELETE_USER_REQUESTED, userId: id });
+}
 export const deleteUsersSuccess = (id: any): any => {
- // console.log('actions, deleteUsersSuccess, parameter: ', id )
+  console.log('actions, deleteUsersSuccess, parameter: ', id )
   return { type: DELETE_USER_SUCCESS, userId: id }
 };
 export const deleteUsersFailed = (e: any): any => ({ type: DELETE_USER_FAILED, message: e.message });

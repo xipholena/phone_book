@@ -14,7 +14,6 @@ export const ROUTES = {
   dynamic: {
     phone: (personId = ':personId') => `/${personId}`,
     edit: (id = ':id') => `/edit/${id}`,
-    delete: (id = ':id') => `/delete/${id}`,
   }
 };
 

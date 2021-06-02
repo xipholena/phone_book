@@ -28,7 +28,6 @@ function FormAdd() {
 
 
   const handleAdd = ():void => {
-    alert('ola add')
     console.log(
       firstNameValue,
       lastNameValue,
@@ -55,9 +54,8 @@ function FormAdd() {
       "address": addressValue,
       "registered": registeredValue,
   }
-  console.log(newUser)
-  dispatch(sendUserRequest(newUser))
-    history.push('/')
+    //console.log(newUser)
+    dispatch(sendUserRequest(newUser))
   };
   return (
     <>
@@ -155,6 +153,7 @@ function FormAdd() {
           />
 
           <button
+            type="submit"
             className="form__button"
           >
             Submit

@@ -4,8 +4,8 @@ import {
   LOG_IN_REQUEST,
   LOG_OUT,
   DELETE_USER_REQUESTED,
-  SEND_USER_REQUESTED,
-} from './constants';
+  SEND_USER_REQUESTED, LOG_IN_SUCCESS, UPDATE_USER_REQUESTED
+} from "./constants";
 import {logInSuccess, logInFailed, logOut,
    getUsersSuccess, getUsersFailed,
    deleteUsersSuccess, 
@@ -14,6 +14,7 @@ import {logInSuccess, logInFailed, logOut,
 import { loginToStorage, logoutOfStorage } from '../utils';
 import {} from './constants';
 import { IPerson } from '../containers/App';
+import { log } from "util";
 
 type FetchUserParams = {
   type: string;
@@ -38,20 +39,16 @@ const getPhones = () => {
 };
 
 
-function* logger(args: any)  {
-  console.log('fetches', args);
+const logger = () => {
+
 }
-function* fetchUsers(action: FetchUserParams, args: any): any {
+function* fetchUsers(action: FetchUserParams): any {
   //Since a generator function can technically return a dynamic value depending on how next() is called, Redux-Saga had decided it best to use type any rather than try to infer a type.
   try {
-
     yield delay(1000);
-    yield call(logger(args))
     const users = yield call(getPhones);
-    if (true) {
-      yield put(getUsersSuccess(users)); //put === dispatch(action.type, payload)
-    }
 
+    yield put(getUsersSuccess(users)); //put === dispatch(action.type, payload)
   } catch (e) {
     yield put(getUsersFailed(e));
   }
@@ -79,7 +76,7 @@ function* handleLogInOut(): any {
 
 function* userSaga(): any {
   //watcher
-  yield takeEvery(GET_USERS_REQUESTED, fetchUsers, ...args); //listens to action with action.type GET_USERS_REQUESTED,  and when it is called calls function  fetchUsers
+  yield takeEvery(LOG_IN_SUCCESS, fetchUsers); //listens to action with action.type GET_USERS_REQUESTED,  and when it is called calls function  fetchUsers
 } //action is still being dispatched
 
 
@@ -94,17 +91,29 @@ function* deleteUser (action: any): any {
 
 function* addUser (action: any): any {
   try {
-
+    // @ts-ignore
+   // yield call(console.log('saga worker ADD User', action))
     yield put(sendUserSuccess(action.newUser))
   } catch (e) {
     
   } 
+}
+function* editUser( action: any): any {
+  try {
+    // @ts-ignore
+   // yield call(console.log('saga worker editUser', action))
+    yield put(deleteUsersSuccess(action.userId))
+    yield put(sendUserSuccess(action.updatedUser))
+  } catch (e) {
+
+  }
 }
 
 function* manageUserSaga(): any {
   //watcher
   yield takeEvery(DELETE_USER_REQUESTED, deleteUser) //pass DELETE_USER_REQUESTED action as arg to deleteUser saga
   yield takeEvery(SEND_USER_REQUESTED, addUser)
+  yield takeEvery(UPDATE_USER_REQUESTED, editUser)
 }
 
 export default function* rootSaga(): any {

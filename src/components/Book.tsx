@@ -2,7 +2,7 @@ import React, { useEffect, FC } from 'react';
 import { IPerson } from '../containers/App';
 import { Link, Route, useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from '../redux/actions';
+import { deleteUser, getUsers } from "../redux/actions";
 import { ROUTES } from '../redux/constants';
 import { RootState } from '../redux/rootReducer';
 
@@ -13,21 +13,14 @@ const Book: FC = (): React.ReactElement => {
   );
 
   const loading = useSelector((state: RootState | any) => state.users.loading);
-  useEffect(() => {
-    dispatch(getUsers());
-    // eslint-disable-next-line
-  }, []);
-   //@ts-ignore
-   //const editHandler: React.MouseEvent<HTMLButtonElement> = (id): void => {
-    //console.log('ola edit ',id)
-  //}
+  //const currentUsers = useSelector((state: RootState | any) => state.users.users )
+
   
-   //@ts-ignore
-  //const deleteHandler: React.MouseEvent<HTMLButtonElement> = (id): void => {
-   // console.log('ola delete',id)
-  //}
- 
-  
+
+
+  const deleteHandler: any = ( e: any, id: any): void => {
+    dispatch(deleteUser(id))
+  }
 
   return (
     <main className='main'>
@@ -44,37 +37,37 @@ const Book: FC = (): React.ReactElement => {
           Add user
         </Link>
 
-
         {loading ? (
           <p>Wait for it...</p>
         ) : (
           <ul>
             {phones?.map(({ id, name, phone }: IPerson, i: number) => {
               if (phones[i - 1]?.name.last.slice(0, 1) !== phones[i]?.name.last.slice(0, 1)) {
+                // @ts-ignore
                 return (
                   <li key={id} className='withSeparator'>
                     <p>{phones[i].name.last.slice(0, 1)} </p>
                     <ul className='firstInRow'>
                       <li className='name'>
-                        <Link to={`/${id}`}> 
-                       
+                        <Link to={`/${id}`}>
                           {name.last} {name.first} 
                         </Link>
-                         {/*@ts-ignore */}
+                        <button onClick={(e) =>deleteHandler(e, id)} type="button" className="form__button">Delete user </button>
                       </li>
-                      <Link to={`/delete/:${id}`} className="form__button">Delete user </Link>
                     </ul>
                   </li>
                 );
               } else {
+
                 return (
                   <>
                   <li key={id} className='name'>
                     <Link to={`/${id}`}>
                     {name.last} {name.first} 
                     </Link>
+                    <button onClick={(e) =>deleteHandler(e, id)} type="button" className="form__button">Delete user </button>
                   </li>
-                   <Link to={`/delete/:${id}`} className="form__button">Delete user </Link>
+
                 </>
                 );
               }

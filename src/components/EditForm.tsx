@@ -1,26 +1,60 @@
 import React,{ useEffect} from "react";
 import {useLocation, useParams, useRouteMatch} from 'react-router-dom'
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../redux/actions";
 
 const EditForm = (): React.ReactElement => {
-  const location = useLocation();
+
   const params = useParams();
-  const match = useRouteMatch();
+  useEffect(() => {
+    console.log('params',params);
+  })
+
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-useEffect(() => {
+  const firstNameValue = watch('firstName');
+  const lastNameValue = watch('lastName');
+  const statusValue = watch('status');
+  const ageValue = watch('age');
+  const companyValue = watch('company');
+  const emailValue = watch('email');
+  const phoneValue = watch('phone');
+  const addressValue = watch('address');
+  const registeredValue = watch('registered');
+
+
+  const updatedUser = {
+    // @ts-ignore
+    "id": params.id.slice(1),
+    "isActive": statusValue === 'active' ? true : false,
+    "age": ageValue,
+    "name": {
+      "first": firstNameValue,
+      "last": lastNameValue,
+    },
+    "company": companyValue,
+    "email": emailValue,
+    "phone": phoneValue,
+    "address": addressValue,
+    "registered": registeredValue,
+  }
+const editHandler = () => {
   //@ts-ignore
   console.log(params.id.slice(1));
-  
-})
+  // @ts-ignore
+  dispatch(updateUser(params.id.slice(1), updatedUser))
+}
+
   return (
     <>
       <div className="container">
-        {<form method="patch" className="edit-form">
+        <form onSubmit={handleSubmit(editHandler)} className="edit-form">
           <p className="edit-form__title">
             Edit profile
           </p>
@@ -117,14 +151,15 @@ useEffect(() => {
 
           <button
             className="form__button"
+            //type="button"
           >
             Submit
           </button>
-        </form>}
+        </form>
       </div>
     </>
   )
-}
+};
 export default EditForm;
 
 

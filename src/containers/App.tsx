@@ -11,7 +11,6 @@ import Home from '../components/Home';
 import User from "../components/User";
 import EditForm from "../components/EditForm";
 import FormAdd from "../components/FormAdd";
-import DeleteUser from "../components/DeleteUser";
 import { ROUTES } from '../redux/constants';
 import { logInRequest } from '../redux/actions';
 import { RootState } from "../redux/rootReducer";
@@ -49,14 +48,12 @@ const App = () => {
   return (
     <>
       <Switch>
-        <PrivateRoute component={FormAdd} path={ROUTES.add} exact/>
+        <PrivateRoute component={FormAdd} path={ROUTES.add}/>
         <PrivateRoute component={EditForm} path={ROUTES.dynamic.edit()} />
-        <PrivateRoute component={DeleteUser} path={ROUTES.dynamic.delete()} />
         <PrivateRoute component={Book} path={ROUTES.main} exact />
         <PublicRoute restricted={false} component={Home} path={ROUTES.home} exact />
         <PublicRoute restricted={true} component={SignIn} path={ROUTES.login} exact />
         <PrivateRoute component={User} path={ROUTES.dynamic.phone()} exact />
-
       </Switch>
     </>
   );

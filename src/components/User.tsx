@@ -8,6 +8,11 @@ const User: FC = () => {
   const users = useSelector((state: RootState)=> state.users.users);
   const person = useMemo(() => users?.find(u => u.id === personId), [users, personId]);
 
+  const params = useParams();
+  useEffect(() => {
+    console.log('personId', personId);
+    console.log('person', person);
+  })
   return person
     ? (
     <>
@@ -51,7 +56,7 @@ const User: FC = () => {
       </div>
     </>
   )
-    : null
+    : <h1>Sorry, something went wrong</h1>
 };
 
 export default User;

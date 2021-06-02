@@ -83,6 +83,7 @@ function* userSaga(): any {
 
 function* deleteUser (action: any): any {
   try {
+    yield delay(1000);
     yield put(deleteUsersSuccess(action.userId))
   } catch (e) {
     
@@ -93,6 +94,7 @@ function* addUser (action: any): any {
   try {
     // @ts-ignore
    // yield call(console.log('saga worker ADD User', action))
+    yield delay(1000);
     yield put(sendUserSuccess(action.newUser))
   } catch (e) {
     
@@ -102,6 +104,7 @@ function* editUser( action: any): any {
   try {
     // @ts-ignore
    // yield call(console.log('saga worker editUser', action))
+    yield delay(1000);
     yield put(deleteUsersSuccess(action.userId))
     yield put(sendUserSuccess(action.updatedUser))
   } catch (e) {

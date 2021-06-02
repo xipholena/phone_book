@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sendUserRequest, sendUserSuccess } from "../redux/actions";
 import { useHistory } from "react-router-dom";
 
@@ -15,6 +15,8 @@ function FormAdd() {
   } = useForm();
 
   const dispatch = useDispatch();
+  // @ts-ignore
+  const isMakingRequest = useSelector(state=>state?.users.isMakingRequest);
 
   const firstNameValue = watch('firstName');
   const lastNameValue = watch('lastName');
@@ -160,6 +162,17 @@ function FormAdd() {
           </button>
         </form>
       </div>
+      {isMakingRequest ? (
+        <div className='dialog'>
+          <div className='dialog__overlay'>
+            <div className='dialog__window'>
+              <p className='dialog__msg'>Sending data...</p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

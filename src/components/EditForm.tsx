@@ -1,7 +1,7 @@
 import React,{ useEffect} from "react";
 import {useLocation, useParams, useRouteMatch} from 'react-router-dom'
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../redux/actions";
 
 const EditForm = (): React.ReactElement => {
@@ -12,6 +12,8 @@ const EditForm = (): React.ReactElement => {
   })
 
   const dispatch = useDispatch();
+  // @ts-ignore
+  const isMakingRequest = useSelector(state=>state?.users.isMakingRequest);
   const {
     register,
     handleSubmit,
@@ -157,6 +159,17 @@ const editHandler = () => {
           </button>
         </form>
       </div>
+      {isMakingRequest ? (
+        <div className='dialog'>
+          <div className='dialog__overlay'>
+            <div className='dialog__window'>
+              <p className='dialog__msg'>Sending data...</p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   )
 };

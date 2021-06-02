@@ -13,7 +13,8 @@ export const ROUTES = {
   projectName: '/phone_book', // webstorm adds it
   dynamic: {
     phone: (personId = ':personId') => `/${personId}`,
-    edit: (id = ':id') => `/edit/${id}`
+    edit: (id = ':id') => `/edit/${id}`,
+    delete: (id = ':id') => `/delete/${id}`,
   }
 };
 
@@ -28,4 +29,8 @@ export const SEND_USER_FAILED = 'SEND_USER_FAILED';
 export const UPDATE_USER_REQUESTED = 'UPDATE_USER_REQUESTED';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 export const UPDATE_USER_FAILED = 'UPDATE_USER_FAILED';
+
+export const DELETE_USER_REQUESTED = 'DELETE_USER_REQUESTED';
+export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+export const DELETE_USER_FAILED = 'DELETE_USER_FAILED';
 

@@ -11,12 +11,23 @@ const Book: FC = (): React.ReactElement => {
   const phones = useSelector((state: RootState | any) =>
     state.users.users?.sort((a: any, b: any) => a.name.last.localeCompare(b.name.last))
   );
+
   const loading = useSelector((state: RootState | any) => state.users.loading);
   useEffect(() => {
     dispatch(getUsers());
     // eslint-disable-next-line
   }, []);
-
+   //@ts-ignore
+   //const editHandler: React.MouseEvent<HTMLButtonElement> = (id): void => {
+    //console.log('ola edit ',id)
+  //}
+  
+   //@ts-ignore
+  //const deleteHandler: React.MouseEvent<HTMLButtonElement> = (id): void => {
+   // console.log('ola delete',id)
+  //}
+ 
+  
 
   return (
     <main className='main'>
@@ -28,27 +39,6 @@ const Book: FC = (): React.ReactElement => {
         </div>
       </div>
       <div className='container'>
-
-        <button
-          type="button"
-          className="form__button"
-        >
-          Send contacts
-        </button>
-
-        <button
-          type="button"
-          className="form__button"
-        >
-          Update contacts
-        </button>
-
-        <button
-          type="button"
-          className="form__button"
-        >
-          Delete user
-        </button>
 
         <Link to={ROUTES.add} className="form__button">
           Add user
@@ -66,20 +56,26 @@ const Book: FC = (): React.ReactElement => {
                     <p>{phones[i].name.last.slice(0, 1)} </p>
                     <ul className='firstInRow'>
                       <li className='name'>
-                        <Link to={`/${id}`}>
-                          {name.last} {name.first}
+                        <Link to={`/${id}`}> 
+                       
+                          {name.last} {name.first} 
                         </Link>
+                         {/*@ts-ignore */}
                       </li>
+                      <Link to={`/delete/:${id}`} className="form__button">Delete user </Link>
                     </ul>
                   </li>
                 );
               } else {
                 return (
+                  <>
                   <li key={id} className='name'>
                     <Link to={`/${id}`}>
-                    {name.last} {name.first}
+                    {name.last} {name.first} 
                     </Link>
                   </li>
+                   <Link to={`/delete/:${id}`} className="form__button">Delete user </Link>
+                </>
                 );
               }
             })}

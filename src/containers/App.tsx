@@ -9,8 +9,9 @@ import { isInStorage } from '../utils';
 import Book from '../components/Book';
 import Home from '../components/Home';
 import User from "../components/User";
-//import EditForm from "../components/EditForm";
+import EditForm from "../components/EditForm";
 import FormAdd from "../components/FormAdd";
+import DeleteUser from "../components/DeleteUser";
 import { ROUTES } from '../redux/constants';
 import { logInRequest } from '../redux/actions';
 import { RootState } from "../redux/rootReducer";
@@ -33,6 +34,7 @@ export interface IPerson {
 
 const App = () => {
   const dispatch = useDispatch();
+  const state = useSelector(state=>state)
 
   useEffect(() => {
     if (isInStorage()) {
@@ -40,11 +42,16 @@ const App = () => {
     }
   }, [dispatch]);
 
+
+  console.log('render App');
+  console.log('state', state);
+
   return (
     <>
       <Switch>
-        <PrivateRoute component={FormAdd} path={ROUTES.add} />
-        {/*<PrivateRoute component={EditForm} path={ROUTES.dynamic.edit()} />*/}
+        <PrivateRoute component={FormAdd} path={ROUTES.add} exact/>
+        <PrivateRoute component={EditForm} path={ROUTES.dynamic.edit()} />
+        <PrivateRoute component={DeleteUser} path={ROUTES.dynamic.delete()} />
         <PrivateRoute component={Book} path={ROUTES.main} exact />
         <PublicRoute restricted={false} component={Home} path={ROUTES.home} exact />
         <PublicRoute restricted={true} component={SignIn} path={ROUTES.login} exact />

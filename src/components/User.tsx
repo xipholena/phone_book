@@ -12,9 +12,7 @@ const User: FC = () => {
     ? (
     <>
       <div className="container">
-        <Link to={`edit/${person.id}`}>
-          Edit user
-        </Link>
+        <Link to={`/edit/:${person.id}`} className="form__button">Edit user </Link>
         <div className="person">
           <h1>{person.name.first} {person.name.last}</h1>
           <p>

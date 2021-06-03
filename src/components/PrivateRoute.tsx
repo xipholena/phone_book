@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { ROUTES } from '../redux/constants';
 import { useSelector } from 'react-redux';
+import { RootState } from '../redux/rootReducer';
 
 type PrivateRouteProps = {
   component: any;
@@ -10,7 +11,7 @@ type PrivateRouteProps = {
 };
 
 const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteProps): React.ReactElement => {
-  const state: any = useSelector(state => state);
+  const state = useSelector((state: RootState) => state);
 
   return (
     <Route

@@ -1,10 +1,5 @@
-import {Reducer} from 'redux';
-import {
-  LOG_IN_REQUEST,
-  LOG_IN_FAILED,
-  LOG_IN_SUCCESS,
-  LOG_OUT,
-} from '../constants';
+import { Reducer } from 'redux';
+import { LOG_IN_REQUEST, LOG_IN_FAILED, LOG_IN_SUCCESS, LOG_OUT, LOG_OUT_SUCCESS } from '../constants';
 export const initialStateLogUser: LogUserReturnType = {
   isLogged: false,
   isLoading: false,
@@ -13,7 +8,7 @@ export const initialStateLogUser: LogUserReturnType = {
 };
 
 export type LogUserArgsType = {
-  type: typeof LOG_IN_REQUEST | typeof LOG_IN_SUCCESS | typeof LOG_IN_FAILED | typeof LOG_OUT;
+  type: typeof LOG_IN_REQUEST | typeof LOG_IN_SUCCESS | typeof LOG_IN_FAILED | typeof LOG_OUT | typeof LOG_OUT_SUCCESS;
   error: null | string;
   message: string;
 };
@@ -21,11 +16,15 @@ export type LogUserArgsType = {
 type LogUserReturnType = {
   isLogged?: boolean;
   isLoading?: boolean;
+  isLeaving?: boolean;
   email: string;
   error?: null | string;
 };
 
-export const logUser: Reducer<LogUserReturnType, LogUserArgsType> = (state = initialStateLogUser, action):LogUserReturnType => {
+export const logUser: Reducer<LogUserReturnType, LogUserArgsType> = (
+  state = initialStateLogUser,
+  action
+): LogUserReturnType => {
   switch (action.type) {
     case LOG_IN_REQUEST:
       return {
@@ -49,6 +48,12 @@ export const logUser: Reducer<LogUserReturnType, LogUserArgsType> = (state = ini
       return {
         ...state,
         isLogged: false,
+        isLeaving: true,
+      };
+    case LOG_OUT_SUCCESS:
+      return {
+        ...state,
+        isLeaving: false,
       };
     default:
       return state;

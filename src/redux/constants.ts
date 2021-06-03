@@ -3,7 +3,7 @@ export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOG_IN_FAILED = 'LOG_IN_FAILED';
 
 export const LOG_OUT = 'LOG_OUT';
-export const GET_PHONES = 'GET_PHONES';
+export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 
 export const ROUTES = {
   main: '/',
@@ -14,7 +14,7 @@ export const ROUTES = {
   dynamic: {
     phone: (personId = ':personId') => `/${personId}`,
     edit: (id = ':id') => `/edit/${id}`,
-  }
+  },
 };
 
 export const GET_USERS_REQUESTED = 'GET_USERS_REQUESTED';
@@ -32,4 +32,3 @@ export const UPDATE_USER_FAILED = 'UPDATE_USER_FAILED';
 export const DELETE_USER_REQUESTED = 'DELETE_USER_REQUESTED';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 export const DELETE_USER_FAILED = 'DELETE_USER_FAILED';
-

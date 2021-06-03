@@ -1,23 +1,35 @@
-import {Reducer} from 'redux'
+import { Reducer } from 'redux';
 import {
-  GET_USERS_REQUESTED,
-  GET_USERS_SUCCESS,
-  GET_USERS_FAILED,
+  DELETE_USER_FAILED,
   DELETE_USER_REQUESTED,
   DELETE_USER_SUCCESS,
-  DELETE_USER_FAILED,
-  SEND_USER_REQUESTED, SEND_USER_SUCCESS, UPDATE_USER_REQUESTED
-} from "../constants";
+  GET_USERS_FAILED,
+  GET_USERS_REQUESTED,
+  GET_USERS_SUCCESS,
+  SEND_USER_REQUESTED,
+  SEND_USER_SUCCESS,
+  UPDATE_USER_REQUESTED,
+} from '../constants';
 import { IPerson } from '../../containers/App';
+
 const initialStateFetch: UsersReturnType = {
   users: [],
   loading: false,
   error: null,
-  isMakingRequest: false
+  isMakingRequest: false,
 };
 
 export type UsersArgsType = {
-  type: typeof GET_USERS_SUCCESS | typeof GET_USERS_FAILED | typeof GET_USERS_REQUESTED | typeof DELETE_USER_REQUESTED | typeof DELETE_USER_SUCCESS | typeof DELETE_USER_FAILED | typeof SEND_USER_REQUESTED | typeof SEND_USER_SUCCESS | typeof UPDATE_USER_REQUESTED;
+  type:
+    | typeof GET_USERS_SUCCESS
+    | typeof GET_USERS_FAILED
+    | typeof GET_USERS_REQUESTED
+    | typeof DELETE_USER_REQUESTED
+    | typeof DELETE_USER_SUCCESS
+    | typeof DELETE_USER_FAILED
+    | typeof SEND_USER_REQUESTED
+    | typeof SEND_USER_SUCCESS
+    | typeof UPDATE_USER_REQUESTED;
   users?: Array<IPerson>;
   message?: string;
   userId?: any;
@@ -31,25 +43,19 @@ type UsersReturnType = {
   isMakingRequest?: boolean;
 };
 
-export const  users: Reducer<UsersReturnType, UsersArgsType> = (state = initialStateFetch, action): UsersReturnType => {
+export const users: Reducer<UsersReturnType, UsersArgsType> = (state = initialStateFetch, action): UsersReturnType => {
   switch (action.type) {
     case GET_USERS_REQUESTED:
-        return {
-          ...state,
-          loading: true,
-      }
-
-      
+      return {
+        ...state,
+        loading: true,
+      };
     case GET_USERS_SUCCESS:
-
-      //if(users.length === 0) {
-        return {
-          ...state,
-          loading: false,
-          users: action.users,
-        };
-      //}
-     // return state;
+      return {
+        ...state,
+        loading: false,
+        users: action.users,
+      };
 
     case GET_USERS_FAILED:
       return {
@@ -57,34 +63,36 @@ export const  users: Reducer<UsersReturnType, UsersArgsType> = (state = initialS
         loading: false,
         error: action.message,
       };
-    case DELETE_USER_SUCCESS:
-      return {
-        ...state,
-        users: state.users?.filter((user: any) => user.id !== action.userId)
-      }
-    case UPDATE_USER_REQUESTED:
-      return {
-        ...state,
-        isMakingRequest: true,
-      }
+
     case SEND_USER_REQUESTED:
       return {
         ...state,
         isMakingRequest: true,
-      }
+      };
     case SEND_USER_SUCCESS:
-      console.log('reducer, action.newUser',action.newUser);
+      let users1: Array<IPerson> | any[] = state.users || [];
       return {
         ...state,
-        users: [
-          //@ts-ignore
-         ...state.users,
-         //@ts-ignore
-         action.newUser
-        ],
+        users: [...users1, action.newUser],
         isMakingRequest: false,
-      }
+      };
+    case UPDATE_USER_REQUESTED:
+      return {
+        ...state,
+        isMakingRequest: true,
+      };
+    case DELETE_USER_REQUESTED:
+      return {
+        ...state,
+        isMakingRequest: true,
+      };
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        users: state.users?.filter((user: any) => user.id !== action.userId),
+        isMakingRequest: false,
+      };
     default:
       return state;
   }
-}
+};
